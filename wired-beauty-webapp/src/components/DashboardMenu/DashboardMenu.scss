@@ -1,0 +1,39 @@
+@import '../../base.scss';
+
+.dashboard-menu {
+    background-color: $primary;
+    // height: 80px;
+    display: flex;
+    padding: 15px 30px;
+    
+}
+
+.logo-menu {
+    height: 65px;
+}
+
+.menu {
+    margin: auto;
+    color: $secondary;
+    font-size: 20px;
+}
+
+.dashboard-menu>p {
+    color: $secondary;
+    transform: scale(2);
+    margin: auto 20px;
+}
+
+.dashboard-menu>p:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.profile-icon {
+    color: $secondary;
+}
+
+.profile-icon:hover {
+    color: white;
+    cursor: pointer;
+}

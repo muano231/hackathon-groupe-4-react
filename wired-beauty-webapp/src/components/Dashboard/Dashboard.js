@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Dashboard.scss';
-import { users } from '../datas/Users';
+import DashboardMenu from '../DashboardMenu/DashboardMenu'
+import DashboardCampaigns from '../DashboardCampaigns/DashboardCampaigns'
+import DashboardProfile from '../DashboardProfile/DashboardProfile'
+import { useParams } from "react-router-dom";
 
 function Dashboard() {
 
@@ -15,28 +18,18 @@ function Dashboard() {
     }
     return age;
   }
+  
+  let params = useParams()
 
   return(
+
     <div>
-      <h1></h1>
-      <table>
-        <tr>
-          <th>age</th>
-          <th>height</th>
-          <th>weight</th>
-          <th>town</th>
-        </tr>
-
-        {users.map((user, index) => (
-          <tr data-index={index}>
-            <td>{Calculate_age(user.birthdate)}</td>
-            <td>{user.height}</td>
-            <td>{user.weight}</td>
-            <td>{user.town}</td>
-          </tr>
-        ))}
-
-      </table>
+      <DashboardMenu name = {'Leo TERRAS'}></DashboardMenu>
+      {params.page == "profile" ?
+        <DashboardProfile></DashboardProfile>
+        :
+        <DashboardCampaigns></DashboardCampaigns>
+      }
     </div>
   )
 }

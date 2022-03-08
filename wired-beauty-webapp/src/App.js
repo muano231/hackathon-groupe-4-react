@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Connexion from "./components/Connexion/Connexion";
+import "./base.scss";
 
 function App() {
   return (

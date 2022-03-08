@@ -9,3 +9,12 @@ $secondary: #43385e;
 
 $text-primary: #212122;
 $text-secondary: #ffffff;
+
+$info: #31a14d;
+$danger: #bd1e1e;
+
+a {
+  color: $secondary;
+  font-style: italic;
+  text-decoration: none;
+}

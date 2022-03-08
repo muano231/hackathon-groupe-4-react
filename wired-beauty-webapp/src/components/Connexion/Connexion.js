@@ -2,23 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Connexion.scss";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Connexion() {
   // User Login info
   const database = [
     {
-      username: "user1",
+      email: "user1@gmail.com",
       password: "pass1",
     },
     {
-      username: "user2",
+      email: "user2@gmail.com",
       password: "pass2",
     },
   ];
 
   const errors = {
-    uname: "invalid username",
-    pass: "invalid password",
+    error: "Invalid username or password",
   };
 
   const [errorMessages, setErrorMessages] = useState({});
@@ -32,20 +32,20 @@ function Connexion() {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-    var { uname, pass } = document.forms[0];
+    var { email, pass } = document.forms[0];
     // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
+    const userData = database.find((user) => user.email === email.value);
     // Compare user info
     if (userData) {
       if (userData.password !== pass.value) {
         // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
+        setErrorMessages({ name: "pass", message: errors.error });
       } else {
         setIsSubmitted(true);
       }
     } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
+      // Email not found
+      setErrorMessages({ name: "email", message: errors.error });
     }
   };
 
@@ -53,18 +53,22 @@ function Connexion() {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label>Username </label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
+          <label>Email </label>
+          <input type="email" name="email" required />
         </div>
         <div className="input-container">
           <label>Password </label>
           <input type="password" name="pass" required />
-          {renderErrorMessage("pass")}
         </div>
+        {renderErrorMessage("pass")}
+        {renderErrorMessage("email")}
         <div className="button-container">
-          <input type="submit"></input>
+          <button type="submit">SIGN IN</button>
         </div>
+
+        <span className="account-text">
+          Don't have an account? Sign up <Link to="/register">&nbsp;here</Link>
+        </span>
       </form>
     </div>
   );

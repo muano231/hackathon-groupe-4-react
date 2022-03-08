@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@200&display=swap");
+a {
+  color: #43385e;
+  font-style: italic;
+  text-decoration: none;
+}
+
 .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13,6 +19,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  color: #212122;
 }
 
 .login-form {
@@ -22,20 +29,59 @@
 .title {
   font-size: 25px;
   margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-input[type="text"],
+input[type="email"],
 input[type="password"] {
   height: 25px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin: 1rem;
 }
 
+input[type="email"]:hover,
+input[type="password"]:hover {
+  border: 1px solid #f8dad9;
+  margin: 1rem;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none !important;
+  margin: 1rem;
+  -webkit-box-shadow: 0 0 10px #f8dad9;
+          box-shadow: 0 0 10px #f8dad9;
+}
+
 .input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  gap: 4px;
+  margin: 10px;
+}
+
+.input-container label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 12px;
 }
 
 .button-container {
@@ -47,7 +93,7 @@ input[type="password"] {
           justify-content: center;
 }
 
-input[type="submit"] {
+.button-container button {
   margin-top: 10px;
   cursor: pointer;
   font-size: 15px;
@@ -55,5 +101,33 @@ input[type="submit"] {
   border: 1px solid #f8dad9;
   color: #212122;
   padding: 10px 20px;
+  font-family: "Libre Franklin", sans-serif;
+}
+
+button:hover {
+  background: #43385e;
+  color: #ffffff;
+}
+
+.error {
+  color: #bd1e1e;
+  font-size: 13px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.account-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 13px;
+  margin-top: 1rem;
 }
 /*# sourceMappingURL=Connexion.css.map */

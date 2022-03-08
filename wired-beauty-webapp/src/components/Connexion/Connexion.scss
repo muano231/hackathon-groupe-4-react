@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: $text-primary;
 }
 .login-form {
   padding: 5rem;
@@ -13,28 +14,69 @@
 .title {
   font-size: 25px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-input[type="text"],
+input[type="email"],
 input[type="password"] {
   height: 25px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin: 1rem;
+  &:hover {
+    border: 1px solid $primary;
+    margin: 1rem;
+  }
+  &:focus {
+    outline: none !important;
+    margin: 1rem;
+    box-shadow: 0 0 10px $primary;
+  }
 }
+
 .input-container {
+  display: flex;
   flex-direction: column;
+  gap: 4px;
+  margin: 10px;
+  & label {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+  }
 }
+
 .button-container {
+  display: flex;
+  justify-content: center;
+  & button {
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    background: $primary;
+    border: 1px solid $primary;
+    color: $text-primary;
+    padding: 10px 20px;
+    font-family: "Libre Franklin", sans-serif;
+  }
+}
+
+button:hover {
+  background: $secondary;
+  color: $text-secondary;
+}
+
+.error {
+  color: $danger;
+  font-size: 13px;
   display: flex;
   justify-content: center;
 }
 
-input[type="submit"] {
-  margin-top: 10px;
-  cursor: pointer;
-  font-size: 15px;
-  background: $primary;
-  border: 1px solid $primary;
-  color: $text-primary;
-  padding: 10px 20px;
+.account-text {
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  margin-top: 1rem;
 }

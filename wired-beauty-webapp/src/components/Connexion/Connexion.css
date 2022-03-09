@@ -41,20 +41,23 @@ a {
 }
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
   height: 25px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin: 1rem;
 }
 
 input[type="email"]:hover,
-input[type="password"]:hover {
+input[type="password"]:hover,
+input[type="text"]:hover {
   border: 1px solid #f8dad9;
   margin: 1rem;
 }
 
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="text"]:focus {
   outline: none !important;
   margin: 1rem;
   -webkit-box-shadow: 0 0 10px #f8dad9;

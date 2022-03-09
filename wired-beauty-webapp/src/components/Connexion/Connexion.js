@@ -4,84 +4,84 @@ import "./Connexion.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../logo.png";
+import { Formik, Field, Form } from "formik";
+import { Navigate } from "react-router-dom";
 
 function Connexion() {
-  // User Login info
-  const database = [
-    {
-      email: "user1@gmail.com",
-      password: "pass1",
-    },
-    {
-      email: "user2@gmail.com",
-      password: "pass2",
-    },
-  ];
-
-  const errors = {
-    error: "Invalid username or password",
-  };
-
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-    var { email, pass } = document.forms[0];
-    // Find user login info
-    const userData = database.find((user) => user.email === email.value);
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.error });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      // Email not found
-      setErrorMessages({ name: "email", message: errors.error });
-    }
-  };
-
   const renderForm = (
     <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Email </label>
-          <input type="email" name="email" required />
-        </div>
-        <div className="input-container">
-          <label>Password </label>
-          <input type="password" name="pass" required />
-        </div>
-        {renderErrorMessage("pass")}
-        {renderErrorMessage("email")}
-        <div className="button-container">
-          <button type="submit">SIGN IN</button>
-        </div>
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+        }}
+        onSubmit={async (values) => {
+          console.log(values);
+          fetch(
+            "http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/login",
+            {
+              method: "post",
+              body: JSON.stringify(values),
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+            }
+          )
+            .then((res) => res.json())
+            .then(
+              (result) => {
+                setIsSubmitted(true);
+                console.log(result);
+                // this.setState({
+                //   isLoaded: true,
+                //   items: Array.of(result),
+                // });
+              },
+              (error) => {
+                setIsSubmitted(false);
+                console.log(error);
+                // this.setState({
+                //   isLoaded: true,
+                //   error,
+                // });
+              }
+            );
+        }}
+      >
+        <Form>
+          <div className="input-container">
+            <label>Email </label>
+            <Field type="email" name="email" required />
+          </div>
+          <div className="input-container">
+            <label>Password </label>
+            <Field type="password" name="password" required />
+          </div>
+          {/* {renderErrorMessage("pass")}
+        {renderErrorMessage("email")} */}
+          <div className="button-container">
+            <button type="submit">SIGN IN</button>
+          </div>
 
-        <span className="account-text">
-          Don't have an account? Sign up <Link to="/register">&nbsp;here</Link>
-        </span>
-      </form>
+          <span className="account-text">
+            Don't have an account? Sign up{" "}
+            <Link to="/register">&nbsp;here</Link>
+          </span>
+        </Form>
+      </Formik>
     </div>
   );
-
-  // https://contactmentor.com/login-form-react-js-code/
 
   return (
     <div className="container">
       <img src={logo} alt="logo" />
       <div className="login-form">
         <div className="title">Sign in</div>
-        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+        {isSubmitted ? <Navigate to="/dashboard/1" /> : renderForm}
       </div>
     </div>
   );

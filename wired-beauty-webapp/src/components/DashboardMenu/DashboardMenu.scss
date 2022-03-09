@@ -26,7 +26,8 @@
     margin: auto 20px;
 }
 
-.dashboard-menu>p:hover {
+.dashboard-menu>p:hover,
+.logout-fa:hover {
     color: white;
     cursor: pointer;
 }

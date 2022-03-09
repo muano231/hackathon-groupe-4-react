@@ -19,7 +19,6 @@ function Connexion() {
           password: "",
         }}
         onSubmit={async (values) => {
-          console.log(values);
           fetch(
             "http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/login",
             {
@@ -34,20 +33,18 @@ function Connexion() {
             .then((res) => res.json())
             .then(
               (result) => {
-                setIsSubmitted(true);
-                console.log(result);
-                // this.setState({
-                //   isLoaded: true,
-                //   items: Array.of(result),
-                // });
+                if(result.access_token) {
+                  sessionStorage.setItem("isLoggedIn", true)
+                  sessionStorage.setItem("user", JSON.stringify(result))
+                  setIsSubmitted(true)
+                } else {
+                  setIsSubmitted(false)
+                  alert("Error, please verify your user or your password")
+                }
               },
               (error) => {
                 setIsSubmitted(false);
                 console.log(error);
-                // this.setState({
-                //   isLoaded: true,
-                //   error,
-                // });
               }
             );
         }}

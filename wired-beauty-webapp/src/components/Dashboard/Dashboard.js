@@ -5,24 +5,30 @@ import DashboardMenu from '../DashboardMenu/DashboardMenu'
 import DashboardCampaigns from '../DashboardCampaigns/DashboardCampaigns'
 import DashboardProfile from '../DashboardProfile/DashboardProfile'
 import { useParams } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Dashboard() {
 
+  const isLoggedIn = sessionStorage.getItem("isLoggedIn")
   let params = useParams()
 
-  return(
-
-    <div>
-      <DashboardMenu name = {'Leo TERRAS'}></DashboardMenu>
-      <div className='content'>
-        {params.page == "profile" ?
-          <DashboardProfile></DashboardProfile>
-          :
-          <DashboardCampaigns></DashboardCampaigns>
-        }
+  if(isLoggedIn == "true") {
+    return(
+      <div>
+        <DashboardMenu name = {'Leo TERRAS'}></DashboardMenu>
+        <div className='content'>
+          {params.page == "profile" ?
+            <DashboardProfile></DashboardProfile>
+            :
+            <DashboardCampaigns></DashboardCampaigns>
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
+  } else {
+    sessionStorage.clear()
+    return(<Navigate to="/" />)
+  }
 }
 
 export default Dashboard;

@@ -33,8 +33,9 @@ function Register() {
           .then((res) => res.json())
           .then(
             (result) => {
-              setIsSubmitted(true);
-              console.log(result);
+              sessionStorage.setItem("isLoggedIn", true)
+              sessionStorage.setItem("user", JSON.stringify(result))
+              setIsSubmitted(true)
               // this.setState({
               //   isLoaded: true,
               //   items: Array.of(result),
@@ -42,7 +43,7 @@ function Register() {
             },
             (error) => {
               setIsSubmitted(false);
-              console.log(error);
+              // console.log(error);
               // this.setState({
               //   isLoaded: true,
               //   error,

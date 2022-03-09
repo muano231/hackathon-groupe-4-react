@@ -5,11 +5,12 @@ import logo from '../../assets/logo.png'
 import {Users} from '../../datas/Users'
 import {FaPowerOff,FaUserCircle} from 'react-icons/fa';
 import {Link} from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 
 function DashboardMenu() {
 
   const logout = () => {
-    console.log("logout");
+    sessionStorage.clear()
   }
 
   return (
@@ -24,7 +25,11 @@ function DashboardMenu() {
           <FaUserCircle />
         </Link>
       </p>
-      <p onClick={logout} className='logout-button'><FaPowerOff /></p>
+      <p onClick={logout} className='logout-button'>
+        <Link to="/" className='logout-fa'>
+          <FaPowerOff />
+        </Link>
+      </p>
     </div>
   )
 }

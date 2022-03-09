@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './DashboardCampaigns.scss';
 import { Link } from 'react-router-dom';
+import {FaArrowRight} from 'react-icons/fa';
 
 class DashboardCampaigns extends React.Component {
 
@@ -47,18 +48,19 @@ class DashboardCampaigns extends React.Component {
         <div className='campaigns-list'>
           {items.map(item => (
             <div key={item.id} className='campaign'>
-              <h3 className='product-name'>Campaign #{item.id} : {item.product.name}</h3>
+              <h3 className='product-name'>{item.product.name}</h3>
+              <hr />
               <div className='sessions-list'>
                 {item.sessions.map(session => {
                   return (
-                    <div key={session.id} className='session'>
-                      <h4>{session.id}</h4>
-                      <p>{session.description}</p>
-                      <p>{session.availability_start}</p>
-                      <p>{session.availability_end}</p>
+                    <div key={session.id} className='session-card'>
+                      <h4>Session #{session.id}</h4>
+                      <p>Description : {session.description}</p>
+                      {/* <p>{session.availability_start}</p> */}
+                      <p>Date de fin : {session.availability_end}</p>
                       <button>
                         <Link to={"/study/"+session.study_id}>
-                          Participer
+                          Participer <FaArrowRight/>
                         </Link>
                       </button>
                     </div>

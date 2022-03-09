@@ -10,6 +10,7 @@ import { Navigate } from "react-router-dom";
 function Connexion() {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [roleAdmin, setRoleAdmin] = useState(false);
 
   const renderForm = (
     <div className="form">
@@ -35,8 +36,10 @@ function Connexion() {
               (result) => {
                 if(result.access_token) {
                   sessionStorage.setItem("isLoggedIn", true)
+                  sessionStorage.setItem("role", result.user.role)
                   sessionStorage.setItem("user", JSON.stringify(result))
-                  setIsSubmitted(true)
+                  result.user.role == "admin" ? setRoleAdmin(true) : setIsSubmitted(true)
+                  // setIsSubmitted(true)
                 } else {
                   setIsSubmitted(false)
                   alert("Error, please verify your user or your password")
@@ -78,7 +81,9 @@ function Connexion() {
       <img className="img" src={logo} alt="logo" />
       <div className="login-form">
         <div className="title">Sign in</div>
-        {isSubmitted ? <Navigate to="/dashboard/campaigns" /> : renderForm}
+        {}
+        {isSubmitted ? <Navigate to="/dashboard/campaigns" /> : 
+        roleAdmin ? <Navigate to="/admin/campaigns" /> : renderForm}
       </div>
     </div>
   );

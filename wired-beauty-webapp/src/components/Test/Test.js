@@ -14,7 +14,7 @@ class Test extends React.Component {
   }
 
   componentDidMount() {
-    const token = JSON.parse(sessionStorage.getItem("user")).token
+    const token = JSON.parse(sessionStorage.getItem("user")).toaccess_tokenken
     fetch(
       "http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/sessions/1",
       {

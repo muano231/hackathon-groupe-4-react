@@ -91,9 +91,9 @@ function Register() {
 
   return (
     <div className="container-register">
-      <img src={logo} alt="logo" />
+      <img className="img" src={logo} alt="logo" />
       <div className="login-form">
-        {isSubmitted ? <Navigate to="/dashboard/1" /> : renderForm}
+        {isSubmitted ? <Navigate to="/dashboard/campaigns" /> : renderForm}
       </div>
     </div>
   );

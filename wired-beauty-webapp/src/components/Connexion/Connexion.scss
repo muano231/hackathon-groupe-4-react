@@ -21,6 +21,7 @@
 
 input[type="email"],
 input[type="password"],
+input[type="number"],
 input[type="text"] {
   height: 25px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -82,7 +83,7 @@ button:hover {
   margin-top: 1rem;
 }
 
-img {
+.img {
   margin-top: 20px;
   width: 20%;
   height: 20%;

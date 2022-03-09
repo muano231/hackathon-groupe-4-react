@@ -78,10 +78,10 @@ function Connexion() {
 
   return (
     <div className="container">
-      <img src={logo} alt="logo" />
+      <img className="img" src={logo} alt="logo" />
       <div className="login-form">
         <div className="title">Sign in</div>
-        {isSubmitted ? <Navigate to="/dashboard/1" /> : renderForm}
+        {isSubmitted ? <Navigate to="/dashboard/campaigns" /> : renderForm}
       </div>
     </div>
   );

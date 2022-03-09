@@ -1,4 +1,4 @@
-@import '../../base.scss';
+@import "../../base.scss";
 
 // .cards {
 //     display: flex;
@@ -14,50 +14,56 @@
 // }
 
 .campaigns-list {
-    width: 100%;
+  width: 100%;
 }
 
 .product-name,
-.session-card>h4 {
-    border-bottom: 1px solid;
-    padding-bottom: 15px;
+.session-card > h4 {
+  border-bottom: 1px solid;
+  padding-bottom: 15px;
 }
 
 .campaign {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .sessions-list {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .session-card {
-    width: 19%;
-    margin: 3%;
-    background-color: $primary;
-    text-align: center;
-    padding: 1% 0;
+  width: 19%;
+  margin: 3%;
+  background-color: $primary;
+  text-align: center;
+  padding: 1% 0;
 }
 
-.session-card>h4 {
-    font-weight: bold;
-    margin: 8%;
-    color: $secondary;
+.session-card > h4 {
+  font-weight: bold;
+  margin: 8%;
+  color: $secondary;
 }
 
 .card-button {
-    background-color: $primary;
-    border: solid $secondary;
-    color: $secondary;
-    padding: 8px 16px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    margin: 16px 8px;
+  background-color: $primary;
+  border: solid $secondary;
+  color: $secondary;
+  padding: 8px 16px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 16px 8px;
 }
 
 .card-button:hover {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,5 +1,13 @@
 @import "../../base.scss";
 
+.container-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: $text-primary;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -19,4 +27,7 @@
 }
 .input {
   margin: 1rem;
+}
+.img {
+  align-items: center;
 }

@@ -5,6 +5,7 @@ import Connexion from "./components/Connexion/Connexion";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "./base.scss";
 import Register from "./components/Register/Register";
+import Test from "./components/Test/Test";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="*" element={<NoPage />} /> */}
         <Route path="/" element={<Connexion />}></Route>
         <Route path="/register" element={<Register />} />
+        <Route path="/study/:id" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );

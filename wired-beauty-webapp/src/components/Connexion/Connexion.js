@@ -78,7 +78,7 @@ function Connexion() {
 
   return (
     <div className="container">
-      <img className="img" src={logo} alt="logo" />
+      <img src={logo} alt="logo" />
       <div className="login-form">
         <div className="title">Sign in</div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}

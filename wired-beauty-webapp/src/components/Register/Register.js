@@ -86,7 +86,7 @@ function Register() {
 
   return (
     <div className="container-register">
-      <img className="img" src={logo} alt="logo" />
+      <img src={logo} alt="logo" />
       <div className="login-form">
         <div className="title">Sign up</div>
         {isSubmitted ? <div>User is successfully signed in</div> : renderForm}

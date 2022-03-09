@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./Register.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../logo.png";
 
 function Register() {
   // User Login info
@@ -32,7 +33,7 @@ function Register() {
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-    var { email, pass } = document.forms[0];
+    var { email, pass, age, nom, size, weight } = document.forms[0];
     // Find user login info
     // const userData = database.find((user) => user.email === email.value);
     // Compare user info
@@ -59,15 +60,15 @@ function Register() {
             <label>Password </label>
             <input type="password" name="pass" className="input" required />
             <label>Age </label>
-            <input type="password" name="pass" className="input" required />
+            <input type="text" name="age" className="input" required />
           </div>
           <div className="input-container-column">
             <label>Name </label>
-            <input type="password" name="pass" className="input" required />
+            <input type="text" name="name-user" className="input" required />
             <label>Size </label>
-            <input type="password" name="pass" className="input" required />
+            <input type="text" name="size" className="input" required />
             <label>Weight </label>
-            <input type="password" name="pass" className="input" required />
+            <input type="text" name="weight" className="input" required />
           </div>
         </div>
         {/* {renderErrorMessage("pass")}
@@ -85,6 +86,7 @@ function Register() {
 
   return (
     <div className="container-register">
+      <img src={logo} alt="logo" />
       <div className="login-form">
         <div className="title">Sign up</div>
         {isSubmitted ? <div>User is successfully signed in</div> : renderForm}

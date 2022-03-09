@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./Connexion.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../logo.png";
 
 function Connexion() {
   // User Login info
@@ -77,6 +78,7 @@ function Connexion() {
 
   return (
     <div className="container">
+      <img src={logo} alt="logo" />
       <div className="login-form">
         <div className="title">Sign in</div>
         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}

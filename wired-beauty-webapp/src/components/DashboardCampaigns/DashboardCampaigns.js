@@ -47,13 +47,12 @@ class DashboardCampaigns extends React.Component {
         <div className='campaigns-list'>
           {items.map(item => (
             <div key={item.id} className='campaign'>
-              <h2 className='product-name'>Campaign #{item.id} : {item.product.name}</h2>
+              <h3 className='product-name'>Campaign #{item.id} : {item.product.name}</h3>
               <div className='sessions-list'>
                 {item.sessions.map(session => {
                   return (
                     <div key={session.id} className='session'>
-                      <h3>{session.id}</h3>
-                      <h2>{session.id}</h2>
+                      <h4>{session.id}</h4>
                       <p>{session.description}</p>
                       <p>{session.availability_start}</p>
                       <p>{session.availability_end}</p>

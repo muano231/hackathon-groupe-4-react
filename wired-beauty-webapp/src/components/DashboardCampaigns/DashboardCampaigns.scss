@@ -1,14 +1,35 @@
 @import '../../base.scss';
 
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    max-width: 1200px;
-    margin: 40px 0;
+// .cards {
+//     display: flex;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: space-around;
+//     max-width: 1200px;
+//     margin: 40px 0;
+// }
+
+// .card-content {
+//     background: $primary;
+// }
+
+.campaigns-list {
+
 }
 
-.card-content {
-    background: $primary;
+.campaign {
+
+}
+
+.product-name {
+
+}
+
+.sessions-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.session {
+
 }

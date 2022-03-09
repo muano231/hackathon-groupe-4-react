@@ -19,7 +19,7 @@ class DashboardCampaigns extends React.Component {
 
   componentDidMount() {
     fetch(
-      'http://f230-2a04-cec0-106c-2e25-a7f1-ead9-2116-632.eu.ngrok.io/api/studies'
+      'http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/studies'
     )
     .then((res) => res.json())
     .then(
@@ -49,20 +49,19 @@ class DashboardCampaigns extends React.Component {
           {items.map(item => (
             <div key={item.id} className='campaign'>
               <h3 className='product-name'>{item.product.name}</h3>
-              <hr />
               <div className='sessions-list'>
                 {item.sessions.map(session => {
                   return (
                     <div key={session.id} className='session-card'>
                       <h4>Session #{session.id}</h4>
-                      <p>Description : {session.description}</p>
+                      <p><b>Description : </b>{session.description}</p>
                       {/* <p>{session.availability_start}</p> */}
-                      <p>Date de fin : {session.availability_end}</p>
-                      <button>
-                        <Link to={"/study/"+session.study_id}>
-                          Participer <FaArrowRight/>
-                        </Link>
-                      </button>
+                      <p><b>Date de fin : </b>{session.availability_end}</p>
+                      <Link to={"/study/"+session.study_id}>
+                        <button className='card-button'>
+                            Participer <FaArrowRight/>
+                        </button>
+                      </Link>
                     </div>
                   )
                 })}

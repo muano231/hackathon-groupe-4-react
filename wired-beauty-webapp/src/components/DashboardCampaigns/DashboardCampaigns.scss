@@ -17,6 +17,12 @@
     width: 100%;
 }
 
+.product-name,
+.session-card>h4 {
+    border-bottom: 1px solid;
+    padding-bottom: 15px;
+}
+
 .campaign {
     margin-bottom: 20px;
 }
@@ -40,10 +46,10 @@
     color: $secondary;
 }
 
-.session-card>button {
+.card-button {
     background-color: $primary;
     border: solid $secondary;
-    color: $primary;
+    color: $secondary;
     padding: 8px 16px;
     text-align: center;
     display: inline-block;
@@ -51,7 +57,7 @@
     margin: 16px 8px;
 }
 
-.session-card>button:hover {
+.card-button:hover {
     text-decoration: none;
     color: white;
 }

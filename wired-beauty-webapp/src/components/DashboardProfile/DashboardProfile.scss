@@ -21,7 +21,13 @@
     flex-wrap: wrap;
 }
 
-.user-informations>p {
+.user-informations>div {
     width: 45%;
     margin-left: 5%;
+}
+
+.bold {
+    font-weight: bold;
+    width: 25px;
+    // margin-left: 5%;
 }

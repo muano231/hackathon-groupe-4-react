@@ -4,7 +4,10 @@
     background-color: $primary;
     display: flex;
     padding: 15px 30px;
-    
+    border-bottom: solid $secondary;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .logo-menu {

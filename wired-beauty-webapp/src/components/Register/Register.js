@@ -4,92 +4,96 @@ import "./Register.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../logo.png";
+import { Formik, Field, Form } from "formik";
+import { Navigate } from "react-router-dom";
 
 function Register() {
-  // User Login info
-  const database = [
-    {
-      email: "user1@gmail.com",
-      password: "pass1",
-    },
-    {
-      email: "user2@gmail.com",
-      password: "pass2",
-    },
-  ];
-
-  const errors = {
-    error: "Invalid username or password",
-  };
-
-  const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-
-  const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-    var { email, pass, age, nom, size, weight } = document.forms[0];
-    // Find user login info
-    // const userData = database.find((user) => user.email === email.value);
-    // Compare user info
-    // if (userData) {
-    //   if (userData.password !== pass.value) {
-    //     // Invalid password
-    //     setErrorMessages({ name: "pass", message: errors.error });
-    //   } else {
-    //     setIsSubmitted(true);
-    //   }
-    // } else {
-    //   // Email not found
-    //   setErrorMessages({ name: "email", message: errors.error });
-    // }
-  };
-
   const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="input-container-column">
-            <label>Email </label>
-            <input type="email" name="email" className="input" required />
-            <label>Password </label>
-            <input type="password" name="pass" className="input" required />
-            <label>Age </label>
-            <input type="text" name="age" className="input" required />
+    <Formik
+      initialValues={{
+        name: "",
+        email: "",
+        password: "",
+      }}
+      onSubmit={async (values) => {
+        console.log(values);
+        fetch(
+          "http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/register",
+          {
+            method: "post",
+            body: JSON.stringify(values),
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              setIsSubmitted(true);
+              console.log(result);
+              // this.setState({
+              //   isLoaded: true,
+              //   items: Array.of(result),
+              // });
+            },
+            (error) => {
+              setIsSubmitted(false);
+              console.log(error);
+              // this.setState({
+              //   isLoaded: true,
+              //   error,
+              // });
+            }
+          );
+      }}
+    >
+      <div className="form">
+        <Form>
+          <div className="title">Sign up</div>
+          <div className="row">
+            <div className="input-container-column">
+              <label>Email </label>
+              <Field type="email" name="email" className="input" required />
+              <label>Password </label>
+              <Field
+                type="password"
+                name="password"
+                className="input"
+                required
+              />
+              <label>Age </label>
+              <Field type="text" name="age" className="input" required />
+            </div>
+            <div className="input-container-column">
+              <label>Name </label>
+              <Field type="text" name="name" className="input" required />
+              <label>Size </label>
+              <Field type="text" name="size" className="input" required />
+              <label>Weight </label>
+              <Field type="text" name="weight" className="input" required />
+            </div>
           </div>
-          <div className="input-container-column">
-            <label>Name </label>
-            <input type="text" name="name-user" className="input" required />
-            <label>Size </label>
-            <input type="text" name="size" className="input" required />
-            <label>Weight </label>
-            <input type="text" name="weight" className="input" required />
+          <div className="button-container">
+            <button type="submit">SIGN UP</button>
           </div>
-        </div>
-        {/* {renderErrorMessage("pass")}
-        {renderErrorMessage("email")} */}
-        <div className="button-container">
-          <button type="submit">SIGN UP</button>
-        </div>
 
-        <span className="account-text">
-          Already have an account? Sign in <Link to="/">&nbsp;here</Link>
-        </span>
-      </form>
-    </div>
+          <span className="account-text">
+            Already have an account? Sign in <Link to="/">&nbsp;here</Link>
+          </span>
+        </Form>
+      </div>
+    </Formik>
   );
 
   return (
     <div className="container-register">
       <img src={logo} alt="logo" />
       <div className="login-form">
-        <div className="title">Sign up</div>
-        {isSubmitted ? <div>User is successfully signed in</div> : renderForm}
+        {isSubmitted ? <Navigate to="/dashboard/1" /> : renderForm}
       </div>
     </div>
   );

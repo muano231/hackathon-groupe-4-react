@@ -2,7 +2,6 @@
 
 .dashboard-menu {
     background-color: $primary;
-    // height: 80px;
     display: flex;
     padding: 15px 30px;
     
@@ -36,4 +35,8 @@
 .profile-icon:hover {
     color: white;
     cursor: pointer;
+}
+
+.dashboard-menu>h4 {
+    color: $secondary;
 }

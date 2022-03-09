@@ -1,22 +1,14 @@
-.content {
+@import '../../base.scss';
+
+.cards {
     display: flex;
-    padding: 2%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 40px 0;
 }
 
-.content>div {
-    border: solid grey;
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px grey;
-    padding: 1%;
-    height: 530px;
-}
-
-.content>div>h3 {
-    font-weight: bold;
-    text-align: center;
-}
-
-.campaigns {
-    margin-right: 1%;
-    width: 100%;
+.card-content {
+    background: $primary;
 }

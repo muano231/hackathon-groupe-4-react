@@ -18,6 +18,7 @@ function App() {
         <Route path="*" element={<NoPage />} /> */}
         <Route path="/" element={<Connexion />}></Route>
         <Route path="/register" element={<Register />} />
+        {/* <Route path="/study/:id" element={<Test />} /> */}
       </Routes>
     </BrowserRouter>
   );

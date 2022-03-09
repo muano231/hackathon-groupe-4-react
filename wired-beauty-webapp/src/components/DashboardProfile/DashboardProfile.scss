@@ -1,22 +1,27 @@
-.content {
-    display: flex;
-    padding: 2%;
-}
-
-.content>div {
-    border: solid grey;
-    border-radius: 10px;
-    box-shadow: 3px 3px 3px grey;
-    padding: 1%;
-    height: 530px;
-}
-
-.content>div>h3 {
-    font-weight: bold;
-    text-align: center;
-}
+@import '../../base.scss';
 
 .profile {
     margin-right: 1%;
     width: 100%;
+    border: solid $secondary;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px grey;
+    padding: 1%;
+    height: 300px;
+}
+
+.profile>h2 {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.user-informations{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-informations>p {
+    width: 45%;
+    margin-left: 5%;
 }

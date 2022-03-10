@@ -1,1 +1,84 @@
-.AdminCampaigns {}
+.campaigns-list {
+
+  .sessions-list {
+    p {
+      margin-bottom: 10px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .addCampaignContainer {
+
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 3rem;
+
+    .addCampaign {
+      font-family: 'Oswald', 'sans-serif';
+      padding: 15px;
+      cursor: pointer;
+      margin: 0 !important;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      border: none;
+      background: var(--color-purple);
+      color: white;
+      border-radius: var(--border-radius-default);
+      position: relative;
+      right: 0;
+      transition: all .25s ease;
+    }
+  }
+
+  .campaignHeading {
+    display: flex;
+    justify-content: space-between;
+
+    .product-name {
+      margin: 0;
+      border-bottom: none;
+    }
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #f2f2f2;
+
+  }
+
+  .sessionsActionContainer {
+    display: flex;
+    gap: 20px;
+
+    a {
+      transition: all .25s ease;
+
+      &:nth-of-type(1) button {
+        background: black;
+      }
+      &:nth-of-type(2) button  {
+        background: #c0392b;
+      }
+      &:nth-of-type(3) button  {
+        background: #6ab04c;
+      }
+    }
+  }
+
+  .sessionActionContainer {
+    display: flex;
+    gap: 20px;
+
+    a {
+      &:first-of-type {
+        background: var(--color-pink);
+        color: black;
+      }
+      &:last-of-type {
+        background: var(--color-purple);
+        color: white;
+      }
+    }
+  }
+}

@@ -37,7 +37,7 @@ function AdminVerifyUsers() {
 
   const verifyUser = (id) => {
     fetch(
-      process.env.REACT_APP_API + `api/user/${id}/verify`,
+      process.env.REACT_APP_API + `/api/user/${id}/verify`,
       {
         method: "post",
         headers: {
@@ -64,7 +64,7 @@ function AdminVerifyUsers() {
   const acceptUser = (id, session_id, study_id) => {
     if(session_id != '--Select a session--') {
       fetch(
-        process.env.REACT_APP_API + `api/user/${id}/${session_id}/add`,
+        process.env.REACT_APP_API + `/api/user/${id}/${session_id}/add`,
         {
           method: "post",
           headers: {

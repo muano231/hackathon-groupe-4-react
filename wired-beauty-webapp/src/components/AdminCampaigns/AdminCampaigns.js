@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./AdminCampaigns.scss";
 import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
+import {FaArrowRight, FaClipboardList, FaPencilAlt, FaPlus, FaTrash} from "react-icons/fa";
 import { Formik, Form, Field } from "formik";
+import {Badge, Button} from "react-bootstrap";
+import {IoMdWifi} from "react-icons/io";
 
 class AdminCampaigns extends React.Component {
   currentDate = new Date();
@@ -51,8 +53,17 @@ class AdminCampaigns extends React.Component {
     this.createNewSession = true;
   };
 
+
+
   render() {
     const { error, isLoaded, items } = this.state;
+
+    const current = new Date();
+    const currentDate = `${current.getFullYear()}-${
+        current.getMonth() + 1
+    }-${current.getDate()}`;
+    const formattedCurrentDate = Date.parse(currentDate);
+
     if (error) {
       return <div>Erreur : {error.message}</div>;
     } else if (!isLoaded) {
@@ -66,13 +77,45 @@ class AdminCampaigns extends React.Component {
     } else {
       return (
         <div className="campaigns-list">
+          <div className="addCampaignContainer">
+            <Button className="addCampaign" onClick={this.createNewSession === true}>
+              Create new session
+              <FaPlus />
+            </Button>
+          </div>
           {items.map((item) => (
             <div key={item.id} className="campaign">
-              {/* <h3 className="product-name">{item.product.name}</h3> */}
+              <div className="campaignHeading">
+                <h3 className="product-name">{item.product.name}</h3>
+                <div className="sessionsActionContainer">
+                  <Link to="/admin/verify-users">
+                    <Button className='new-users-button'>
+                      <FaPencilAlt />
+                    </Button>
+                  </Link>
+                  <Link to="/admin/verify-users">
+                    <Button className='new-users-button'>
+                      <FaTrash />
+                    </Button>
+                  </Link>
+                  <Link to="/admin/verify-users">
+                    <Button className='new-users-button'>
+                      <FaPlus />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
               <div className="sessions-list">
                 {item.sessions.map((session) => {
                   return (
                     <div key={session.id} className="session-card">
+                      {                           formattedCurrentDate &&
+                      Date.parse(session.availability_end) >=
+                      formattedCurrentDate ? (
+                          <div className="liveContainer">
+                            <IoMdWifi/>
+                          </div>
+                      ) : ''}
                       <h4>Session #{session.id}</h4>
                       <p>
                         <b>Description : </b>
@@ -80,32 +123,43 @@ class AdminCampaigns extends React.Component {
                       </p>
                       {/* <p>{session.availability_start}</p> */}
                       <p>
-                        <b>Final date: </b>
+                        <b>Start date: </b>
+                        {session.availability_start}
+                      </p>
+                      <p>
+                        <b>End date: </b>
                         {session.availability_end}
                       </p>
                       {/* <Link
                         to={"/study/" + session.study_id}
                         state={session.study_id}
                       > */}
-                      <Link
-                        to={"/study/" + session.study_id}
-                        state={session.study_id}
-                      >
-                        <button>Modify</button>
-                        <button>Delete</button>
-                      </Link>
+                      <div className="sessionActionContainer">
+                        <Link
+                            to={"/study/" + session.study_id}
+                            state={session.study_id}
+                        >
+                          Modify
+                        </Link>
+                        <Link
+                            to={"/study/" + session.study_id}
+                            state={session.study_id}
+                        >
+                          Delete
+                        </Link>
+                      </div>
+
                     </div>
                   );
                 })}
               </div>
             </div>
           ))}
-          {/* CREATION DE LA NOUVELLE SESSION */}
-          <div>
-            Session
-            <button onclick={this.createNewSession === true}>
+          <div className="addCampaignContainer">
+            <Button className="addCampaign" onClick={this.createNewSession === true}>
               Create new session
-            </button>
+              <FaPlus />
+            </Button>
           </div>
           {this.createNewSession ? (
             <Formik

@@ -1,17 +1,56 @@
 @import '../../base.scss';
 
-.admin-menu {
-    background-color: $primary;
+.dashboard-menu {
+    background-color: white;
     display: flex;
-    padding: 15px 30px;
-    border-bottom: solid $secondary;
     position: fixed;
     top: 0;
     width: 100%;
+    box-shadow:
+            0px 1.7px 2.2px rgba(0, 0, 0, 0.07),
+            0px 4.1px 5.3px rgba(0, 0, 0, 0.05),
+            0px 7.8px 10px rgba(0, 0, 0, 0.042),
+            0px 13.8px 17.9px rgba(0, 0, 0, 0.035),
+            0px 25.9px 33.4px rgba(0, 0, 0, 0.028),
+            0px 62px 80px rgba(0, 0, 0, 0.02)
+;
+
+
+    .menu_container {
+        max-width: 1300px;
+        padding: 20px;
+        margin: 0 auto;
+        align-items: center;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        > div {
+            display: flex;
+            gap: 40px;
+            ul {
+                list-style: none;
+                display: flex;
+                align-items: center;
+                gap: 30px;
+
+                li a {
+                    color: black;
+                    text-transform: uppercase;
+                    font-style: normal;
+                    transition: all .25s ease-in;
+
+                    &:hover {
+                        color: var(--color-purple);
+                    }
+                }
+            }
+        }
+    }
 }
 
 .logo-menu {
-    height: 65px;
+    height: 30px;
 }
 
 .menu {
@@ -20,24 +59,32 @@
     font-size: 20px;
 }
 
-.admin-menu>p {
-    color: $secondary;
-    transform: scale(2);
-    margin: auto 20px;
-}
-
-.admin-menu>p:hover,
+.dashboard-menu>p:hover,
 .logout-fa:hover {
     color: white;
     cursor: pointer;
 }
 
-.admin-menu>h5 {
-    margin-top: 23px;
+
+.actionContainer {
+    display: flex;
+    align-items: center;
+
+    a {
+        font-size: 21px !important;
+        transition: all .25s ease-in;
+        display: flex;
+        color: $primary;
+
+        &:hover {
+            color: $primary;
+        }
+    }
 }
 
 .profile-icon {
     color: $secondary;
+    font-size: 30px;
 }
 
 .profile-icon:hover {
@@ -45,20 +92,16 @@
     cursor: pointer;
 }
 
-.admin-menu>h4 {
+.dashboard-menu>h4 {
     color: $secondary;
 }
 
 .new-users-button {
-    background-color: $secondary !important;
-    color: white !important;
-    border: 1px solid $secondary !important;
-    height: 50px;
-    margin-top: 9px;
-}
-
-.new-users-button:hover {
-    background-color: $primary !important;
-    color: $secondary !important;
-    border: 1px solid $secondary !important;
+    padding: 15px;
+    cursor: pointer;
+    margin: 0 !important;
+    border: none;
+    background: #6ab04c;
+    color: white;
+    border-radius: var(--border-radius-default);
 }

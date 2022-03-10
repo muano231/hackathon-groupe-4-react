@@ -14,7 +14,7 @@ function Test(props) {
   // console.log("location", location);
   useEffect(() => {
     const token = JSON.parse(sessionStorage.getItem("user")).access_token;
-    fetch(process.env.REACT_APP_API + `api/sessions/${location.state}`, {
+    fetch(process.env.REACT_APP_API + `/api/sessions/${location.state}`, {
       method: "get",
       headers: {
         Accept: "application/json",

@@ -20,6 +20,7 @@ function App() {
                 <Route path="/study/:id" element={<Test/>}/>
                 <Route path="/register" element={<Connexion/>}/>
                 <Route path="/" element={<Connexion/>}/>
+                <Route path="*" element={<Connexion fromNotFound/>}/>
             </Routes>
         </BrowserRouter>
     );

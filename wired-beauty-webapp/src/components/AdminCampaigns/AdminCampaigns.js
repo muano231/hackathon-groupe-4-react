@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./AdminCampaigns.scss";
 import { Link } from "react-router-dom";
 import {FaArrowRight, FaClipboardList, FaPencilAlt, FaPlus, FaTrash} from "react-icons/fa";
-import { Formik, Form, Field } from "formik";
+import {Formik, Form, Field, isEmptyArray} from "formik";
 import {Badge, Button} from "react-bootstrap";
 import {IoMdWifi} from "react-icons/io";
 
@@ -75,11 +75,12 @@ class AdminCampaigns extends React.Component {
         </div>
       );
     } else {
+      console.log(items)
       return (
         <div className="campaigns-list">
           <div className="addCampaignContainer">
             <Button className="addCampaign" onClick={this.createNewSession === true}>
-              Create new session
+              Create new campaign
               <FaPlus />
             </Button>
           </div>
@@ -106,7 +107,7 @@ class AdminCampaigns extends React.Component {
                 </div>
               </div>
               <div className="sessions-list">
-                {item.sessions.map((session) => {
+                {!isEmptyArray(item.sessions) ? item.sessions.map((session) => {
                   return (
                     <div key={session.id} className="session-card">
                       {                           formattedCurrentDate &&
@@ -151,13 +152,15 @@ class AdminCampaigns extends React.Component {
 
                     </div>
                   );
-                })}
+                }) : (
+                    <p>No session available, please create one.</p>
+                )}
               </div>
             </div>
           ))}
           <div className="addCampaignContainer">
             <Button className="addCampaign" onClick={this.createNewSession === true}>
-              Create new session
+              Create new campaign
               <FaPlus />
             </Button>
           </div>
@@ -201,31 +204,31 @@ class AdminCampaigns extends React.Component {
                   className="input"
                   name="study_id"
                   required
-                ></Field>
+                />
                 <Field
                   type="text"
                   className="input"
                   name="availability_start"
                   required
-                ></Field>
+                />
                 <Field
                   type="text"
                   className="input"
                   name="availability_end"
                   required
-                ></Field>
+                />
                 <Field
                   type="text"
                   className="input"
                   name="description"
                   required
-                ></Field>
+                />
                 <Field
                   type="text"
                   className="input"
                   name="questions"
                   required
-                ></Field>
+                />
                 <button type="submit">SEND</button>
               </Form>
             </Formik>

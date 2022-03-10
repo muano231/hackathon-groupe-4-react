@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, a {
   font-family: 'Oswald', 'sans-serif';
 }
 
-p, li, span, label, button {
+p, li, span, label, button,th,td {
   font-family: 'Roboto', 'sans-serif';
 }
 
@@ -45,7 +45,7 @@ h4 {
   font-size: 2.3rem
 }
 
-p,a,li, button {
+p,a,li, button,th,td {
   font-size: 1.4rem !important;
   line-height: 1;
 }

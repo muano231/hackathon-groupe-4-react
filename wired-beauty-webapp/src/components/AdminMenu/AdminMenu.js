@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./AdminMenu.scss";
 import logo from "../../assets/logo.png";
-import { Users } from "../../datas/Users";
 import { FaPowerOff, FaClipboardList, FaFilePowerpoint } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Badge, Button } from "react-bootstrap";

@@ -1,14 +1,40 @@
 @import "../../base.scss";
 
+.background {
+  width: 100%;
+  height: 100vh;
+  background-color: #1a1a1a;
+}
+
 .container {
   display: flex;
+  width: 100%;
+  padding: 30px;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   color: $text-primary;
 }
 .login-form {
-  padding: 5rem;
+  padding: 3rem;
+  background-color: white;
+  box-shadow:
+          2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+          6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+          12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+          22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+          41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+          100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
+  border-radius: var(--border-radius-default);
+  min-width: 450px;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -19,33 +45,51 @@
   justify-content: center;
 }
 
+.form {
+  width: 100%;
+
+}
+
 input[type="email"],
 input[type="password"],
 input[type="number"],
-input[type="text"] {
-  height: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 1rem;
+input[type="text"],
+select
+{
+  border: 1px solid var(--color-pink);
+  padding: 1.5rem 2.4rem;
+  background: #f2f2f2;
+  border-radius: var(--border-radius-default);
+  margin-bottom: 2rem;
+  font-size: 16px;
+  width: 100%;
+  transition: all .25s ease-in;
   &:hover {
-    border: 1px solid $primary;
-    margin: 1rem;
+    border: 1px solid $secondary;
   }
   &:focus {
     outline: none !important;
-    margin: 1rem;
-    box-shadow: 0 0 10px $primary;
+    box-shadow: 0 0 5px rgba(0,0,0,0.12);
   }
 }
 
 .input-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 4px;
-  margin: 10px;
   & label {
     display: flex;
     flex-direction: column;
-    margin-left: 12px;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  &.asColumn {
+    display: grid;
+    column-gap: 30px;
+    row-gap: 0px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
 
@@ -53,20 +97,22 @@ input[type="text"] {
   display: flex;
   justify-content: center;
   & button {
-    margin-top: 10px;
+    padding: 1.5rem 2.4rem;
+    background-color: $secondary;
+    border-radius: var(--border-radius-default);
+    margin: 3rem 0rem;
+    font-size: 16px;
+    transition: all .25s ease-in;
+    width: 100%;
+    border: none;
     cursor: pointer;
-    font-size: 15px;
-    background: $primary;
-    border: 1px solid $primary;
-    color: $text-primary;
-    padding: 10px 20px;
-    font-family: "Libre Franklin", sans-serif;
   }
 }
 
 button:hover {
-  background: $secondary;
-  color: $text-secondary;
+  background: $primary;
+  color: white;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.15);
 }
 
 .error {
@@ -84,7 +130,7 @@ button:hover {
 }
 
 .img {
-  margin-top: 20px;
-  width: 20%;
-  height: 20%;
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 3rem;
 }

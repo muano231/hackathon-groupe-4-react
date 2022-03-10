@@ -17,11 +17,7 @@ class Test extends React.Component {
   componentDidMount() {
     const token = JSON.parse(sessionStorage.getItem("user")).access_token;
     fetch(
-<<<<<<< HEAD
       process.env.REACT_APP_API + "api/sessions/1",
-=======
-      "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/sessions/2",
->>>>>>> 95bb465a5d7045212fcd3d20aaeac6e1455d4940
       {
         method: "get",
         headers: {
@@ -88,11 +84,7 @@ class Test extends React.Component {
                 };
                 console.log("data", data);
                 fetch(
-<<<<<<< HEAD
                   process.env.REACT_APP_API + "api/tests",
-=======
-                  "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/tests",
->>>>>>> 95bb465a5d7045212fcd3d20aaeac6e1455d4940
                   {
                     method: "post",
                     body: JSON.stringify(data),

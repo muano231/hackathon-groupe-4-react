@@ -21,11 +21,7 @@ function Register() {
         console.log(values);
         const token = JSON.parse(sessionStorage.getItem("user")).access_token;
         fetch(
-<<<<<<< HEAD
           process.env.REACT_APP_API + "api/register",
-=======
-          "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/register",
->>>>>>> 95bb465a5d7045212fcd3d20aaeac6e1455d4940
           {
             method: "post",
             body: JSON.stringify(values),

@@ -21,11 +21,7 @@ function Connexion() {
         }}
         onSubmit={async (values) => {
           fetch(
-<<<<<<< HEAD
             process.env.REACT_APP_API + "api/login",
-=======
-            "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/login",
->>>>>>> 95bb465a5d7045212fcd3d20aaeac6e1455d4940
             {
               method: "post",
               body: JSON.stringify(values),

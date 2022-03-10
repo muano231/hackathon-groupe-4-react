@@ -6,6 +6,7 @@ import { Formik, Field, Form } from "formik";
 class Test extends React.Component {
   constructor(props) {
     super(props);
+    console.log("props", props);
     this.state = {
       error: null,
       isLoaded: false,
@@ -14,9 +15,13 @@ class Test extends React.Component {
   }
 
   componentDidMount() {
-    const token = JSON.parse(sessionStorage.getItem("user")).token;
+    const token = JSON.parse(sessionStorage.getItem("user")).access_token;
     fetch(
+<<<<<<< HEAD
       process.env.REACT_APP_API + "api/sessions/1",
+=======
+      "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/sessions/2",
+>>>>>>> 95bb465a5d7045212fcd3d20aaeac6e1455d4940
       {
         method: "get",
         headers: {
@@ -42,37 +47,17 @@ class Test extends React.Component {
         }
       );
   }
-  // handleSubmit = (event) => {
-  //   //Prevent page reload
-  //   event.preventDefault();
-  //   var { email, pass } = document.forms[0];
-  //   // Find user login info
-  //   // const userData = database.find((user) => user.email === email.value);
-  //   // // Compare user info
-  //   // if (userData) {
-  //   //   if (userData.password !== pass.value) {
-  //   //     // Invalid password
-  //   //     setErrorMessages({ name: "pass", message: errors.error });
-  //   //   } else {
-  //   //     setIsSubmitted(true);
-  //   //   }
-  //   // } else {
-  //   //   // Email not found
-  //   //   setErrorMessages({ name: "email", message: errors.error });
-  //   // }
-  // };
+
   render() {
     const { error, isLoaded, items } = this.state;
-    // console.log(this.state);
     console.log(items);
-    // renvoyer un tableau  session id qui contient question id et valeur id
     if (error) {
       return <div>Erreur : {error}</div>;
     } else if (!isLoaded) {
       return (
         <div className="spinner">
-          <div class="spinner-grow" role="status">
-            <span class="sr-only"></span>
+          <div className="spinner-grow" role="status">
+            <span className="sr-only"></span>
           </div>
         </div>
       );
@@ -82,19 +67,35 @@ class Test extends React.Component {
           <div className="login-form">
             <div className="title"></div>
             <Formik
-              initialValues={{
-                name: "",
-                email: "",
-                password: "",
-              }}
+              initialValues={{}}
               onSubmit={async (values) => {
+                // renvoyer un tableau  session id qui contient question id et valeur id
                 console.log(values);
-                const token = JSON.parse(sessionStorage.getItem("user")).token;
+                const token = JSON.parse(
+                  sessionStorage.getItem("user")
+                ).access_token;
+
+                var transformedValues = Object.entries(values).map((value) => ({
+                  question_id: value[0],
+                  answer_id: value[1],
+                }));
+                console.log("transformedValues", transformedValues);
+
+                const data = {
+                  address: "Sciences-U",
+                  session_id: 1,
+                  answers: transformedValues,
+                };
+                console.log("data", data);
                 fetch(
+<<<<<<< HEAD
                   process.env.REACT_APP_API + "api/tests",
+=======
+                  "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/tests",
+>>>>>>> 95bb465a5d7045212fcd3d20aaeac6e1455d4940
                   {
                     method: "post",
-                    body: JSON.stringify(values),
+                    body: JSON.stringify(data),
                     headers: {
                       Accept: "application/json",
                       Authorization: `Bearer ${token}`,
@@ -105,21 +106,12 @@ class Test extends React.Component {
                   .then((res) => res.json())
                   .then(
                     (result) => {
-                      sessionStorage.setItem("isLoggedIn", true);
-                      sessionStorage.setItem("user", JSON.stringify(result));
-                      // setIsSubmitted(true)
-                      // this.setState({
-                      //   isLoaded: true,
-                      //   items: Array.of(result),
-                      // });
+                      console.log("success", result);
+                      // sessionStorage.setItem("isLoggedIn", true);
+                      // sessionStorage.setItem("user", JSON.stringify(result));
                     },
                     (error) => {
-                      // setIsSubmitted(false);
-                      // console.log(error);
-                      // this.setState({
-                      //   isLoaded: true,
-                      //   error,
-                      // });
+                      console.log(error);
                     }
                   );
               }}
@@ -132,9 +124,14 @@ class Test extends React.Component {
                       {item.questions.map((question) => (
                         <div key={question.id}>
                           <label className="p-2">{question.question}</label>
-                          <Field component="select" name="answer">
+                          <Field
+                            component="select"
+                            name={question.id}
+                            required
+                            className="form-select"
+                          >
                             {question.answers.map((answer) => (
-                              <option value={answer.value}>
+                              <option key={answer.id} value={answer.value}>
                                 {answer.answer}
                               </option>
                             ))}

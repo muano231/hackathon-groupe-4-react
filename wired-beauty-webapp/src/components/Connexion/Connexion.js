@@ -21,7 +21,11 @@ function Connexion() {
         }}
         onSubmit={async (values) => {
           fetch(
+<<<<<<< HEAD
             process.env.REACT_APP_API + "api/login",
+=======
+            "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/login",
+>>>>>>> 95bb465a5d7045212fcd3d20aaeac6e1455d4940
             {
               method: "post",
               body: JSON.stringify(values),
@@ -34,15 +38,17 @@ function Connexion() {
             .then((res) => res.json())
             .then(
               (result) => {
-                if(result.access_token) {
-                  sessionStorage.setItem("isLoggedIn", true)
-                  sessionStorage.setItem("role", result.user.role)
-                  sessionStorage.setItem("user", JSON.stringify(result))
-                  result.user.role == "admin" ? setRoleAdmin(true) : setIsSubmitted(true)
+                if (result.access_token) {
+                  sessionStorage.setItem("isLoggedIn", true);
+                  sessionStorage.setItem("role", result.user.role);
+                  sessionStorage.setItem("user", JSON.stringify(result));
+                  result.user.role == "admin"
+                    ? setRoleAdmin(true)
+                    : setIsSubmitted(true);
                   // setIsSubmitted(true)
                 } else {
-                  setIsSubmitted(false)
-                  alert("Error, please verify your user or your password")
+                  setIsSubmitted(false);
+                  alert("Error, please verify your user or your password");
                 }
               },
               (error) => {
@@ -81,9 +87,13 @@ function Connexion() {
       <img className="img" src={logo} alt="logo" />
       <div className="login-form">
         <div className="title">Sign in</div>
-        {}
-        {isSubmitted ? <Navigate to="/dashboard/campaigns" /> : 
-        roleAdmin ? <Navigate to="/admin/campaigns" /> : renderForm}
+        {isSubmitted ? (
+          <Navigate to="/dashboard/campaigns" />
+        ) : roleAdmin ? (
+          <Navigate to="/admin/campaigns" />
+        ) : (
+          renderForm
+        )}
       </div>
     </div>
   );

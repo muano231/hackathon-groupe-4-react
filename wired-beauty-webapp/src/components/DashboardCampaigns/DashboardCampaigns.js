@@ -50,8 +50,8 @@ class DashboardCampaigns extends React.Component {
     } else if (!isLoaded) {
       return (
         <div className="spinner">
-          <div class="spinner-grow" role="status">
-            <span class="sr-only"></span>
+          <div className="spinner-grow" role="status">
+            <span className="sr-only"></span>
           </div>
         </div>
       );

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./Test.scss";
 import { Formik, Field, Form } from "formik";
 import { useLocation } from "react-router-dom";
+import ModalBox from "../Modal/Modal";
 
 function Test(props) {
   const [items, setItems] = useState([]);
@@ -50,7 +51,6 @@ function Test(props) {
               answer_id: value[1],
             }));
             console.log("transformedValues", transformedValues);
-
             const data = {
               address: "Sciences-U",
               session_id: location.state,
@@ -70,8 +70,6 @@ function Test(props) {
               .then(
                 (result) => {
                   console.log("success", result);
-                  // sessionStorage.setItem("isLoggedIn", true);
-                  // sessionStorage.setItem("user", JSON.stringify(result));
                 },
                 (error) => {
                   console.log(error);

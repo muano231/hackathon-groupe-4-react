@@ -20,7 +20,7 @@ class DashboardCampaigns extends React.Component {
     // console.log(JSON.parse(sessionStorage.getItem("user")));
     const token = JSON.parse(sessionStorage.getItem("user")).access_token;
     fetch(
-      "https://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/studies",
+      "http://0e0c-2a01-cb14-1bc-7800-2c8f-d762-8a92-c07c.eu.ngrok.io/api/studies",
       {
         method: "get",
         headers: {
@@ -78,7 +78,7 @@ class DashboardCampaigns extends React.Component {
                         <b>Date de fin : </b>
                         {session.availability_end}
                       </p>
-                      <Link to={"/study/" + session.study_id}>
+                      <Link to={`/study/${session.study_id}`} state={50}>
                         <button className="card-button">
                           Participer <FaArrowRight />
                         </button>

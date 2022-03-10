@@ -19,9 +19,9 @@ function Register() {
       }}
       onSubmit={async (values) => {
         console.log(values);
-        const token = JSON.parse(sessionStorage.getItem("user")).access_token
+        const token = JSON.parse(sessionStorage.getItem("user")).access_token;
         fetch(
-          "http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/register",
+          "http://0e0c-2a01-cb14-1bc-7800-2c8f-d762-8a92-c07c.eu.ngrok.io/api/register",
           {
             method: "post",
             body: JSON.stringify(values),
@@ -35,9 +35,9 @@ function Register() {
           .then((res) => res.json())
           .then(
             (result) => {
-              sessionStorage.setItem("isLoggedIn", true)
-              sessionStorage.setItem("user", JSON.stringify(result))
-              setIsSubmitted(true)
+              sessionStorage.setItem("isLoggedIn", true);
+              sessionStorage.setItem("user", JSON.stringify(result));
+              setIsSubmitted(true);
               // this.setState({
               //   isLoaded: true,
               //   items: Array.of(result),

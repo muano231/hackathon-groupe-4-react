@@ -6,6 +6,7 @@ import { Formik, Field, Form } from "formik";
 class Test extends React.Component {
   constructor(props) {
     super(props);
+    console.log("props", props);
     this.state = {
       error: null,
       isLoaded: false,
@@ -14,9 +15,9 @@ class Test extends React.Component {
   }
 
   componentDidMount() {
-    const token = JSON.parse(sessionStorage.getItem("user")).token;
+    const token = JSON.parse(sessionStorage.getItem("user")).access_token;
     fetch(
-      "http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/sessions/1",
+      "http://0e0c-2a01-cb14-1bc-7800-2c8f-d762-8a92-c07c.eu.ngrok.io/api/sessions/1",
       {
         method: "get",
         headers: {
@@ -42,37 +43,17 @@ class Test extends React.Component {
         }
       );
   }
-  // handleSubmit = (event) => {
-  //   //Prevent page reload
-  //   event.preventDefault();
-  //   var { email, pass } = document.forms[0];
-  //   // Find user login info
-  //   // const userData = database.find((user) => user.email === email.value);
-  //   // // Compare user info
-  //   // if (userData) {
-  //   //   if (userData.password !== pass.value) {
-  //   //     // Invalid password
-  //   //     setErrorMessages({ name: "pass", message: errors.error });
-  //   //   } else {
-  //   //     setIsSubmitted(true);
-  //   //   }
-  //   // } else {
-  //   //   // Email not found
-  //   //   setErrorMessages({ name: "email", message: errors.error });
-  //   // }
-  // };
+
   render() {
     const { error, isLoaded, items } = this.state;
-    // console.log(this.state);
     console.log(items);
-    // renvoyer un tableau  session id qui contient question id et valeur id
     if (error) {
       return <div>Erreur : {error}</div>;
     } else if (!isLoaded) {
       return (
         <div className="spinner">
-          <div class="spinner-grow" role="status">
-            <span class="sr-only"></span>
+          <div className="spinner-grow" role="status">
+            <span className="sr-only"></span>
           </div>
         </div>
       );
@@ -83,15 +64,14 @@ class Test extends React.Component {
             <div className="title"></div>
             <Formik
               initialValues={{
-                name: "",
-                email: "",
-                password: "",
+                answer: "",
               }}
               onSubmit={async (values) => {
+                // renvoyer un tableau  session id qui contient question id et valeur id
                 console.log(values);
                 const token = JSON.parse(sessionStorage.getItem("user")).token;
                 fetch(
-                  "http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/tests",
+                  "http://0e0c-2a01-cb14-1bc-7800-2c8f-d762-8a92-c07c.eu.ngrok.io/api/tests",
                   {
                     method: "post",
                     body: JSON.stringify(values),
@@ -107,19 +87,9 @@ class Test extends React.Component {
                     (result) => {
                       sessionStorage.setItem("isLoggedIn", true);
                       sessionStorage.setItem("user", JSON.stringify(result));
-                      // setIsSubmitted(true)
-                      // this.setState({
-                      //   isLoaded: true,
-                      //   items: Array.of(result),
-                      // });
                     },
                     (error) => {
-                      // setIsSubmitted(false);
-                      // console.log(error);
-                      // this.setState({
-                      //   isLoaded: true,
-                      //   error,
-                      // });
+                      console.log(error);
                     }
                   );
               }}
@@ -134,7 +104,7 @@ class Test extends React.Component {
                           <label className="p-2">{question.question}</label>
                           <Field component="select" name="answer">
                             {question.answers.map((answer) => (
-                              <option value={answer.value}>
+                              <option key={answer.value} value={answer.value}>
                                 {answer.answer}
                               </option>
                             ))}

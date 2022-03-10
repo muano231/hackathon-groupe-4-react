@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./DashboardProfile.scss";
-import { Users } from "../../datas/Users";
 import { Formik, Field, Form } from "formik";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
@@ -26,13 +25,13 @@ function DashboardProfile() {
       </a>
       {/* <div> */}
       <Formik
-        initialValues={{
-          name: Users[0].name,
-          height: Users[0].height,
-          email: Users[0].email,
-          weight: Users[0].weight,
-          birthdate: Users[0].birthdate,
-        }}
+        // initialValues={{
+        //   name: Users[0].name,
+        //   height: Users[0].height,
+        //   email: Users[0].email,
+        //   weight: Users[0].weight,
+        //   birthdate: Users[0].birthdate,
+        // }}
         onSubmit={async (values) => {
           await new Promise((resolve) => setTimeout(resolve, 500));
           alert(JSON.stringify(values, null, 2));

@@ -57,7 +57,7 @@ function Test(props) {
               answers: transformedValues,
             };
             console.log("data", data);
-            fetch(process.env.REACT_APP_API + "api/tests", {
+            fetch(process.env.REACT_APP_API + "/api/tests", {
               method: "post",
               body: JSON.stringify(data),
               headers: {

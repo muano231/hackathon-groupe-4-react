@@ -1,7 +1,6 @@
 import React from "react";
 import "./DashboardMenu.scss";
 import logo from "../../assets/logo.png";
-import { Users } from "../../datas/Users";
 import { FaPowerOff, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -24,7 +23,6 @@ function DashboardMenu() {
           </ul>
         </div>
         <div className="actionContainer">
-          <p>{Users[0].name}</p>
           <p className="account-button">
             <Link to="/dashboard/profile" className="profile-icon">
               <FaUserCircle />

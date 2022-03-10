@@ -19,7 +19,7 @@ class AdminCampaigns extends React.Component {
   componentDidMount() {
     // console.log(JSON.parse(sessionStorage.getItem("user")));
     const token = JSON.parse(sessionStorage.getItem("user")).access_token;
-    fetch(process.env.REACT_APP_API + "api/studies", {
+    fetch(process.env.REACT_APP_API + "/api/studies", {
       method: "get",
       headers: {
         Accept: "application/json",

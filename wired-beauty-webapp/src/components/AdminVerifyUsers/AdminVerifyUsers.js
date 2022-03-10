@@ -11,7 +11,7 @@ function AdminVerifyUsers() {
 
   useEffect(() => {
     fetch(
-      process.env.REACT_APP_API + "api/users",
+      process.env.REACT_APP_API + "/api/users",
       {
         method: "get",
         headers: {
@@ -103,7 +103,7 @@ function AdminVerifyUsers() {
 
   const removeAsk = (id, study_id) => {
     fetch(
-      process.env.REACT_APP_API + `api/user/${id}/${study_id}/remove`,
+      process.env.REACT_APP_API + `/api/user/${id}/${study_id}/remove`,
       {
         method: "post",
         headers: {

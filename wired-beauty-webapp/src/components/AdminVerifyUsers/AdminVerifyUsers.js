@@ -43,33 +43,36 @@ function AdminVerifyUsers() {
 
 
   return (
-    <div className='verify-users-list'>
-          <h3 className='verify-users-title'>Users to verify</h3>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th className='verify-cell text-center'>Verify</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.values(users).map((user) => (
-                <tr key={user.id} className='user-display'>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td className='text-center'>
-                  <Button className='verify-user-button' onClick={verifyUser(user.id)}>
-                    Accept <FaCheck />
-                  </Button>
-                </td>
-              </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
+    <div>
+      <div className='verify-users-list'>
+        <h3 className='verify-users-title'>Users to verify</h3>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th className='verify-cell text-center'>Verify</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.values(users).map((user) => (
+              <tr key={user.id} className='user-display'>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td className='text-center'>
+                <Button className='verify-user-button' onClick={() => {verifyUser(user.id)}}>
+                  Accept <FaCheck />
+                </Button>
+              </td>
+            </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
+    <div></div>
+    </div>
   )
 }
 

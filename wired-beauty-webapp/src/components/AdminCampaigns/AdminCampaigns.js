@@ -19,17 +19,14 @@ class AdminCampaigns extends React.Component {
   componentDidMount() {
     // console.log(JSON.parse(sessionStorage.getItem("user")));
     const token = JSON.parse(sessionStorage.getItem("user")).access_token;
-    fetch(
-      process.env.REACT_APP_API + "api/studies",
-      {
-        method: "get",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(process.env.REACT_APP_API + "api/studies", {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then(
         (result) => {
@@ -63,7 +60,7 @@ class AdminCampaigns extends React.Component {
         <div className="campaigns-list">
           {items.map((item) => (
             <div key={item.id} className="campaign">
-              <h3 className="product-name">{item.product.name}</h3>
+              {/* <h3 className="product-name">{item.product.name}</h3> */}
               <div className="sessions-list">
                 {item.sessions.map((session) => {
                   return (
@@ -78,7 +75,14 @@ class AdminCampaigns extends React.Component {
                         <b>Date de fin : </b>
                         {session.availability_end}
                       </p>
-                      <Link to={"/study/" + session.study_id}>
+                      {/* <Link
+                        to={"/study/" + session.study_id}
+                        state={session.study_id}
+                      > */}
+                      <Link
+                        to={"/study/" + session.study_id}
+                        state={session.study_id}
+                      >
                         <button className="card-button">
                           Participer <FaArrowRight />
                         </button>

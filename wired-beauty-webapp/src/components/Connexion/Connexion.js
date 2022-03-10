@@ -8,7 +8,7 @@ import logo from "../../logo.png";
 import { Formik, Field, Form } from "formik";
 import { Navigate } from "react-router-dom";
 
-function Connexion() {
+function Connexion({fromNotFound}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [roleAdmin, setRoleAdmin] = useState(false);
 
@@ -16,7 +16,7 @@ function Connexion() {
 
   const [vantaEffect, setVantaEffect] = useState(0);
   const myRef = useRef(null);
-  useEffect(() => {
+   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
         TOPOLOGY({
@@ -41,7 +41,7 @@ function Connexion() {
 
   console.log(location.pathname);
 
-  const isLoginPage = location.pathname === "/";
+  const isLoginPage = location.pathname === "/" || fromNotFound;
   const isRegisterPage = location.pathname === "/register";
 
   return (

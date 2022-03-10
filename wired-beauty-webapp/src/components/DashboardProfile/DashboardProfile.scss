@@ -1,46 +1,72 @@
 @import "../../base.scss";
 
 .profile {
-  margin-right: 1%;
+  margin-bottom: 3rem;
+  padding: 3rem;
+  border-radius: var(--border-radius-default);
+  background: white;
   width: 100%;
-  //   border: solid $secondary;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  padding: 1%;
-  height: 430px;
+  box-shadow:
+          0px 1.7px 2.2px rgba(0, 0, 0, 0.07),
+          0px 4.1px 5.3px rgba(0, 0, 0, 0.05),
+          0px 7.8px 10px rgba(0, 0, 0, 0.042),
+          0px 13.8px 17.9px rgba(0, 0, 0, 0.035),
+          0px 25.9px 33.4px rgba(0, 0, 0, 0.028),
+          0px 62px 80px rgba(0, 0, 0, 0.02)
+;
+
+  .Heading {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 15px;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    font-weight: 600;
+  }
+
+  .button-container {
+    width: 100%;
+
+    button {
+      margin: 0 auto;
+      width: auto !important;
+      margin-top: 3rem;
+      padding: 1.5rem 4rem;
+    }
+  }
+
 }
 
-.profile > h2 {
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 50px;
-}
 
 .user-informations {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-column-gap: 30px;
+  grid-row-gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+  span {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .user-informations > div {
-  width: 45%;
-  margin-left: 5%;
 }
 
-.bold {
-  font-weight: bold;
-  width: 25px;
-  // margin-left: 5%;
-}
 
 .icon-return {
   color: $secondary;
-  margin-left: 80px;
   //   padding-bottom: 1rem;
 }
 
 .icon-return:hover {
   color: $primary;
-  margin-left: 80px;
 }
 
 .form-profile {

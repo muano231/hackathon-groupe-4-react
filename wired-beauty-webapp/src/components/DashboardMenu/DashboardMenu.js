@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './DashboardMenu.scss';
 import logo from '../../assets/logo.png'
 import {Users} from '../../datas/Users'
@@ -14,21 +13,29 @@ function DashboardMenu() {
 
   return (
     <div className='dashboard-menu'>
-      <Link to="/dashboard/campaigns">
-        <img src={logo} alt='Logo' className='logo-menu' />
-      </Link>
-      <div className='menu'>List of testing campaigns</div>
-      <h5>{Users[0].name}</h5>
-      <p className='account-button'>
-        <Link to="/dashboard/profile" className='profile-icon'>
-          <FaUserCircle />
-        </Link>
-      </p>
-      <p onClick={logout} className='logout-button'>
-        <Link to="/" className='logout-fa'>
-          <FaPowerOff />
-        </Link>
-      </p>
+        <div className="menu_container">
+            <div>
+                <Link to="/dashboard/campaigns">
+                    <img src={logo} alt='Logo' className='logo-menu' />
+                </Link>
+                <ul>
+                    <li><Link to="/dashboard/campaigns">campaigns</Link></li>
+                </ul>
+            </div>
+            <div className="actionContainer">
+                <p>{Users[0].name}</p>
+                <p className='account-button'>
+                    <Link to="/dashboard/profile" className='profile-icon'>
+                        <FaUserCircle />
+                    </Link>
+                </p>
+                <p onClick={logout} className='logout-button'>
+                    <Link to="/" className='logout-fa'>
+                        <FaPowerOff />
+                    </Link>
+                </p>
+            </div>
+        </div>
     </div>
   )
 }

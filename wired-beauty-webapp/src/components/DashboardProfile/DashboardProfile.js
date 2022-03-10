@@ -1,13 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import "./DashboardProfile.scss";
 import { Users } from "../../datas/Users";
 import { Formik, Field, Form } from "formik";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 function DashboardProfile() {
-  const Calculate_age = () => {
+ let navigate = useNavigate();
+ /* const Calculate_age = () => {
     var today = new Date();
     var birthdate = new Date(Users[0].birthdate);
     var age = today.getFullYear() - birthdate.getFullYear();
@@ -16,14 +16,14 @@ function DashboardProfile() {
       age--;
     }
     return age;
-  };
+  };*/
 
   return (
     <div className="profile">
       <h2>Profile</h2>
-      <Link to="/dashboard/campaings">
+      <a onClick={() => navigate(-1)}>
         <FaArrowAltCircleLeft className="icon-return" size={35} />
-      </Link>
+      </a>
       {/* <div> */}
       <Formik
         initialValues={{
@@ -42,23 +42,23 @@ function DashboardProfile() {
           <div className="user-informations">
             <div>
               <span className="bold">Name</span>
-              <Field name="name" type="text"></Field>
+              <Field name="name" type="text"/>
             </div>
             <div>
               <span className="bold">Height</span>
-              <Field name="height" type="number"></Field>
+              <Field name="height" type="number"/>
             </div>
             <div>
               <span className="bold">Email</span>
-              <Field name="email" type="email"></Field>
+              <Field name="email" type="email"/>
             </div>
             <div>
               <span className="bold">Weight</span>
-              <Field name="weight" type="number"></Field>
+              <Field name="weight" type="number"/>
             </div>
             <div>
               <span className="bold">BirthDate</span>
-              <Field name="birthdate" type="text"></Field>
+              <Field name="birthdate" type="text"/>
             </div>
           </div>
           <div className="button-container">

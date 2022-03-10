@@ -4,6 +4,7 @@ import './Admin.scss';
 import AdminMenu from '../AdminMenu/AdminMenu'
 import { useParams } from "react-router-dom";
 import AdminCampaigns from '../AdminCampaigns/AdminCampaigns'
+import AdminVerifyUsers from '../AdminVerifyUsers/AdminVerifyUsers'
 
 function Admin() {
   const isLoggedIn = sessionStorage.getItem("isLoggedIn")
@@ -14,7 +15,13 @@ function Admin() {
     return(
       <div>
         <AdminMenu></AdminMenu>
-        <AdminCampaigns></AdminCampaigns>
+        <div className='content'>
+          {params.page == "verify-users" ?
+            <AdminVerifyUsers></AdminVerifyUsers>
+            : params.page == "campaigns" &&
+            <AdminCampaigns></AdminCampaigns>
+          }
+        </div>
       </div>
     )
   }

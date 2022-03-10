@@ -1,0 +1,27 @@
+@import '../../base.scss';
+
+.verify-users-list {
+    width: 100%;
+}
+
+.verify-users-title {
+    font-weight: bold;
+}
+
+.verify-cell {
+    width: 120px;
+}
+
+.verify-user-button {
+    background-color: $secondary !important;
+    color: white !important;
+    border: 1px solid $secondary !important;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.verify-user-button:hover {
+    background-color: #ECECEC !important;
+    color: $secondary !important;
+    border: 1px solid $secondary !important;
+}

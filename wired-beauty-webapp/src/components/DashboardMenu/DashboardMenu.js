@@ -18,7 +18,6 @@ function DashboardMenu() {
         <img src={logo} alt='Logo' className='logo-menu' />
       </Link>
       <div className='menu'>List of testing campaigns</div>
-      <h5>{Users[0].name}</h5>
       <p className='account-button'>
         <Link to="/dashboard/profile" className='profile-icon'>
           <FaUserCircle />

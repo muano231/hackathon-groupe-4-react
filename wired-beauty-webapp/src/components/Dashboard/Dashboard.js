@@ -10,10 +10,10 @@ import { Navigate } from "react-router-dom";
 function Dashboard() {
 
   const isLoggedIn = sessionStorage.getItem("isLoggedIn")
-  const isAdmin = sessionStorage.getItem("role")
+  const role = sessionStorage.getItem("role")
   let params = useParams()
 
-  if(isLoggedIn == "true" && isAdmin == "testeur") {
+  if(isLoggedIn == "true" && role == "testeur") {
     return(
       <div>
         <DashboardMenu name = {'Leo TERRAS'}></DashboardMenu>

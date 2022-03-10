@@ -50,9 +50,15 @@
 }
 
 .new-users-button {
-    background-color: $primary !important;
-    color: $secondary !important;
+    background-color: $secondary !important;
+    color: white !important;
     border: 1px solid $secondary !important;
     height: 50px;
     margin-top: 9px;
+}
+
+.new-users-button:hover {
+    background-color: $primary !important;
+    color: $secondary !important;
+    border: 1px solid $secondary !important;
 }

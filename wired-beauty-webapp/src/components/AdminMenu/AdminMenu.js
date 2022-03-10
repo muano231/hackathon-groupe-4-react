@@ -25,10 +25,11 @@ function AdminMenu() {
           <FaUserCircle />
         </Link>
       </p> */}
-      <Button className='new-users-button'>
-        <FaClipboardList /> <Badge bg="secondary">9</Badge>
-        <span className="visually-hidden">unread messages</span>
-      </Button>
+      <Link to="/admin/verify-users">
+        <Button className='new-users-button'>
+          <FaClipboardList /> <Badge bg="secondary">9</Badge>
+        </Button>
+      </Link>
       <p onClick={logout} className='logout-button'>
         <Link to="/" className='logout-fa'>
           <FaPowerOff />

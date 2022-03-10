@@ -17,7 +17,7 @@ class Test extends React.Component {
   componentDidMount() {
     const token = JSON.parse(sessionStorage.getItem("user")).access_token;
     fetch(
-      "http://0e0c-2a01-cb14-1bc-7800-2c8f-d762-8a92-c07c.eu.ngrok.io/api/sessions/1",
+      "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/sessions/2",
       {
         method: "get",
         headers: {
@@ -63,18 +63,31 @@ class Test extends React.Component {
           <div className="login-form">
             <div className="title"></div>
             <Formik
-              initialValues={{
-                answer: "",
-              }}
+              initialValues={{}}
               onSubmit={async (values) => {
                 // renvoyer un tableau  session id qui contient question id et valeur id
                 console.log(values);
-                const token = JSON.parse(sessionStorage.getItem("user")).token;
+                const token = JSON.parse(
+                  sessionStorage.getItem("user")
+                ).access_token;
+
+                var transformedValues = Object.entries(values).map((value) => ({
+                  question_id: value[0],
+                  answer_id: value[1],
+                }));
+                console.log("transformedValues", transformedValues);
+
+                const data = {
+                  address: "Sciences-U",
+                  session_id: 1,
+                  answers: transformedValues,
+                };
+                console.log("data", data);
                 fetch(
-                  "http://0e0c-2a01-cb14-1bc-7800-2c8f-d762-8a92-c07c.eu.ngrok.io/api/tests",
+                  "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/tests",
                   {
                     method: "post",
-                    body: JSON.stringify(values),
+                    body: JSON.stringify(data),
                     headers: {
                       Accept: "application/json",
                       Authorization: `Bearer ${token}`,
@@ -85,8 +98,9 @@ class Test extends React.Component {
                   .then((res) => res.json())
                   .then(
                     (result) => {
-                      sessionStorage.setItem("isLoggedIn", true);
-                      sessionStorage.setItem("user", JSON.stringify(result));
+                      console.log("success", result);
+                      // sessionStorage.setItem("isLoggedIn", true);
+                      // sessionStorage.setItem("user", JSON.stringify(result));
                     },
                     (error) => {
                       console.log(error);
@@ -102,9 +116,14 @@ class Test extends React.Component {
                       {item.questions.map((question) => (
                         <div key={question.id}>
                           <label className="p-2">{question.question}</label>
-                          <Field component="select" name="answer">
+                          <Field
+                            component="select"
+                            name={question.id}
+                            required
+                            className="form-select"
+                          >
                             {question.answers.map((answer) => (
-                              <option key={answer.value} value={answer.value}>
+                              <option key={answer.id} value={answer.value}>
                                 {answer.answer}
                               </option>
                             ))}

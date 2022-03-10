@@ -20,7 +20,7 @@ class DashboardCampaigns extends React.Component {
     // console.log(JSON.parse(sessionStorage.getItem("user")));
     const token = JSON.parse(sessionStorage.getItem("user")).access_token;
     fetch(
-      "http://0e0c-2a01-cb14-1bc-7800-2c8f-d762-8a92-c07c.eu.ngrok.io/api/studies",
+      "http://4277-2a04-cec0-1068-a563-f75-7a00-504f-52df.eu.ngrok.io/api/studies",
       {
         method: "get",
         headers: {

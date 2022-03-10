@@ -19,17 +19,14 @@ class DashboardCampaigns extends React.Component {
   componentDidMount() {
     // console.log(JSON.parse(sessionStorage.getItem("user")));
     const token = JSON.parse(sessionStorage.getItem("user")).access_token;
-    fetch(
-      process.env.REACT_APP_API + "api/studies",
-      {
-        method: "get",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(process.env.REACT_APP_API + "api/studies", {
+      method: "get",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then(
         (result) => {

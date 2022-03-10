@@ -20,17 +20,14 @@ function Connexion() {
           password: "",
         }}
         onSubmit={async (values) => {
-          fetch(
-            process.env.REACT_APP_API + "api/login",
-            {
-              method: "post",
-              body: JSON.stringify(values),
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-            }
-          )
+          fetch(process.env.REACT_APP_API + "api/login", {
+            method: "post",
+            body: JSON.stringify(values),
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          })
             .then((res) => res.json())
             .then(
               (result) => {

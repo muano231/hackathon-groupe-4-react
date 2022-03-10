@@ -1,1 +1,58 @@
-.AdminMenu {}
+@import '../../base.scss';
+
+.admin-menu {
+    background-color: $primary;
+    display: flex;
+    padding: 15px 30px;
+    border-bottom: solid $secondary;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.logo-menu {
+    height: 65px;
+}
+
+.menu {
+    margin: auto;
+    color: $secondary;
+    font-size: 20px;
+}
+
+.admin-menu>p {
+    color: $secondary;
+    transform: scale(2);
+    margin: auto 20px;
+}
+
+.admin-menu>p:hover,
+.logout-fa:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.admin-menu>h5 {
+    margin-top: 23px;
+}
+
+.profile-icon {
+    color: $secondary;
+}
+
+.profile-icon:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.admin-menu>h4 {
+    color: $secondary;
+}
+
+.new-users-button {
+    background-color: $primary !important;
+    color: $secondary !important;
+    border: 1px solid $secondary !important;
+    height: 50px;
+    margin-top: 9px;
+}

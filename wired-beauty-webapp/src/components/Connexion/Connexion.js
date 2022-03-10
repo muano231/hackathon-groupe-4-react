@@ -21,7 +21,7 @@ function Connexion() {
         }}
         onSubmit={async (values) => {
           fetch(
-            "http://f781-2a04-cec0-106c-2e25-e559-b2dc-5ff0-7745.eu.ngrok.io/api/login",
+            "http://0e0c-2a01-cb14-1bc-7800-2c8f-d762-8a92-c07c.eu.ngrok.io/api/login",
             {
               method: "post",
               body: JSON.stringify(values),
@@ -34,15 +34,17 @@ function Connexion() {
             .then((res) => res.json())
             .then(
               (result) => {
-                if(result.access_token) {
-                  sessionStorage.setItem("isLoggedIn", true)
-                  sessionStorage.setItem("role", result.user.role)
-                  sessionStorage.setItem("user", JSON.stringify(result))
-                  result.user.role == "admin" ? setRoleAdmin(true) : setIsSubmitted(true)
+                if (result.access_token) {
+                  sessionStorage.setItem("isLoggedIn", true);
+                  sessionStorage.setItem("role", result.user.role);
+                  sessionStorage.setItem("user", JSON.stringify(result));
+                  result.user.role == "admin"
+                    ? setRoleAdmin(true)
+                    : setIsSubmitted(true);
                   // setIsSubmitted(true)
                 } else {
-                  setIsSubmitted(false)
-                  alert("Error, please verify your user or your password")
+                  setIsSubmitted(false);
+                  alert("Error, please verify your user or your password");
                 }
               },
               (error) => {
@@ -82,8 +84,13 @@ function Connexion() {
       <div className="login-form">
         <div className="title">Sign in</div>
         {}
-        {isSubmitted ? <Navigate to="/dashboard/campaigns" /> : 
-        roleAdmin ? <Navigate to="/admin/campaigns" /> : renderForm}
+        {isSubmitted ? (
+          <Navigate to="/dashboard/campaigns" />
+        ) : roleAdmin ? (
+          <Navigate to="/admin/campaigns" />
+        ) : (
+          renderForm
+        )}
       </div>
     </div>
   );

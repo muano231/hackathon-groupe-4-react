@@ -18,12 +18,6 @@ function AdminMenu() {
         <img src={logo} alt="Logo" className="logo-menu" />
       </Link>
       <div className="menu">Control panel</div>
-      {/* <h5>Admin</h5> */}
-      {/* <p className='account-button'>
-        <Link to="/admin/profile" className='profile-icon'>
-          <FaUserCircle />
-        </Link>
-      </p> */}
       <Link to="/admin/verify-users">
         <Button className='new-users-button'>
           <FaClipboardList /> <Badge bg="secondary">9</Badge>

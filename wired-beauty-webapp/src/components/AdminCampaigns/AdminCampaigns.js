@@ -1,22 +1,62 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import "./AdminCampaigns.scss";
 import { Link } from "react-router-dom";
 import {
-  FaArrowRight,
-  FaClipboardList,
+
   FaPencilAlt,
   FaPlus,
-  FaThumbsDown,
+  FaThumbsDown, FaTimes,
   FaTrash,
 } from "react-icons/fa";
 import { Formik, Form, Field, isEmptyArray } from "formik";
-import { Badge, Button } from "react-bootstrap";
+import {  Button } from "react-bootstrap";
 import { IoMdWifi } from "react-icons/io";
 import Thumb from "../Thumb/Thumb";
 
+const token = JSON.parse(sessionStorage.getItem("user")).access_token;
+
+
+function deleteSession(id) {
+  fetch(process.env.REACT_APP_API + "/api/sessions/" + id, {
+    method: "delete",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  })
+      .then((res) => res.json())
+      .then(
+          (result) => {
+            console.log("result", result);
+          },
+          (error) => {
+            console.log(error);
+          }
+      ).then(() => window.location.reload(false))
+}
+
+function deleteCampaign(id) {
+  fetch(process.env.REACT_APP_API + "/api/studies/" + id, {
+    method: "delete",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  })
+      .then((res) => res.json())
+      .then(
+          (result) => {
+            console.log("result", result);
+          },
+          (error) => {
+            console.log(error);
+          }
+      ).then(() => window.location.reload(false))
+}
+
 class AdminCampaigns extends React.Component {
-  currentDate = new Date();
 
   constructor(props) {
     super(props);
@@ -25,12 +65,12 @@ class AdminCampaigns extends React.Component {
       isLoaded: false,
       items: [],
       createNewSession: false,
+      createNewCampaign: false,
     };
   }
 
   componentDidMount() {
     // console.log(JSON.parse(sessionStorage.getItem("user")));
-    const token = JSON.parse(sessionStorage.getItem("user")).access_token;
     fetch(process.env.REACT_APP_API + "/api/studies", {
       method: "get",
       headers: {
@@ -57,7 +97,7 @@ class AdminCampaigns extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, items, createNewSession } = this.state;
+    const { error, isLoaded, items, createNewSession, createNewCampaign } = this.state;
 
     const current = new Date();
     const currentDate = `${current.getFullYear()}-${
@@ -82,9 +122,9 @@ class AdminCampaigns extends React.Component {
           <div className="addCampaignContainer">
             <Button
               className="addCampaign"
-              onClick={(e) => this.setState({ createNewSession: true })}
+              onClick={(e) => this.setState({ createNewCampaign: true })}
             >
-              Create new session
+              Create new campaign
               <FaPlus />
             </Button>
           </div>
@@ -93,21 +133,16 @@ class AdminCampaigns extends React.Component {
               <div className="campaignHeading">
                 <h3 className="product-name">{item.product.name}</h3>
                 <div className="sessionsActionContainer">
-                  <Link to="/admin/verify-users">
-                    <Button className="new-users-button">
-                      <FaPencilAlt />
-                    </Button>
-                  </Link>
-                  <Link to="/admin/verify-users">
-                    <Button className="new-users-button">
+                  <a>
+                    <Button className="new-users-button" onClick={() => deleteCampaign(item.id)}>
                       <FaTrash />
                     </Button>
-                  </Link>
-                  <Link to="/admin/verify-users">
-                    <Button className="new-users-button">
+                  </a>
+                  <a>
+                    <Button className="new-users-button" onClick={(e) => this.setState({ createNewSession: true, campaignIdNewSession: item.id })}>
                       <FaPlus />
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className="sessions-list">
@@ -143,18 +178,10 @@ class AdminCampaigns extends React.Component {
                         state={session.study_id}
                       > */}
                         <div className="sessionActionContainer">
-                          <Link
-                            to={"/study/" + session.study_id}
-                            state={session.study_id}
-                          >
-                            Modify
-                          </Link>
-                          <Link
-                            to={"/study/" + session.study_id}
-                            state={session.study_id}
+                          <Button className="deleteButton" onClick={() => deleteSession(session.id)}
                           >
                             Delete
-                          </Link>
+                          </Button>
                         </div>
                       </div>
                     );
@@ -165,90 +192,170 @@ class AdminCampaigns extends React.Component {
               </div>
             </div>
           ))}
+          <div className="addCampaignContainer">
+            <Button
+                className="addCampaign"
+                onClick={(e) => this.setState({ createNewCampaign: true })}
+            >
+              Create new campaign
+              <FaPlus />
+            </Button>
+          </div>
           {createNewSession ? (
-            <Formik
-              initialValues={{
-                study_id: null,
-                availability_start: "",
-                availability_end: "",
-                description: "",
-              }}
-              onSubmit={async (values) => {
-                console.log(values);
-                const token = JSON.parse(
-                  sessionStorage.getItem("user")
-                ).access_token;
-                fetch(process.env.REACT_APP_API + "/api/sessions", {
-                  method: "post",
-                  body: JSON.stringify(values),
-                  headers: {
-                    Accept: "application/json",
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                  },
-                })
-                  .then((res) => res.json())
-                  .then(
-                    (result) => {
-                      console.log("result", result);
-                    },
-                    (error) => {
-                      console.log(error);
-                    }
-                  );
-              }}
-              render={({ values, handleSubmit, setFieldValue }) => {
+              <div className="newSessionModal">
+                <div className="newSessionModalContainer">
+                  <Formik
+                      initialValues={{
+                        study_id: this.state.campaignIdNewSession,
+                        availability_start: "",
+                        availability_end: "",
+                        description: "",
+
+                      }}
+                      onSubmit={async (values) => {
+                        console.log(values);
+                        const token = JSON.parse(
+                            sessionStorage.getItem("user")
+                        ).access_token;
+                        fetch(process.env.REACT_APP_API + "/api/sessions", {
+                          method: "post",
+                          body: JSON.stringify(values),
+                          headers: {
+                            Accept: "application/json",
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                          },
+                        })
+                            .then((res) => res.json())
+                            .then(
+                                (result) => {
+                                  console.log("result", result);
+                                },
+                                (error) => {
+                                  console.log(error);
+                                }
+                            ).then(() => window.location.reload(false))
+                      }}
+                  render={({ values, handleSubmit, setFieldValue }) => {
                 return (
-                  <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
+                      <Button onClick={() => {this.setState({createNewSession:false})}}>
+                        Annuler
+                      </Button>
+                      <h2>Add session</h2>
                     <div className="form-group">
-                      <label>Study id</label>
+                      <label>Study Id</label>
                       <Field
-                        type="number"
-                        className="input"
-                        name="study_id"
-                        required
+                          type="number"
+                          className="input"
+                          name="study_id"
+                          value={this.state.campaignIdNewSession}
+                          required
                       />
                       <label>Start date</label>
                       <Field
-                        type="text"
-                        className="input"
-                        name="availability_start"
-                        required
+                          type="text"
+                          className="input"
+                          name="availability_start"
+                          required
                       />
                       <label>End date</label>
                       <Field
-                        type="text"
-                        className="input"
-                        name="availability_end"
-                      />
+                          type="text"
+                          className="input"
+                          name="availability_end"
+                          />
                       <label>Description</label>
                       <Field
-                        type="text"
-                        className="input"
-                        name="description"
-                        required
+                          type="text"
+                          className="input"
+                          name="description"
+                          required
                       />
                       <label>File upload</label>
                       <Field
-                        id="file"
+                          id="file"
                         name="questions"
                         type="file"
-                        className="input"
-                        onChange={(event) => {
+                          className="input"
+                          onChange={(event) => {
                           setFieldValue("file", event.currentTarget.files[0]);
-                        }}
+                          }}
                       />
                       <Thumb file={values.questions} />
-                    </div>
-                    <button type="submit" className="btn btn-primary">
-                      Submit
-                    </button>
-                  </form>
-                );
+                      </div>
+                      <button type="submit" className="btn btn-primary">
+                      Submit</button>
+                    </form>
+                  );
               }}
             />
+                </div>
+              </div>
           ) : (
             ""
+          )}
+          {createNewCampaign ? (
+              <div className="newCampaignModal">
+                <div className="newCampaignModalContainer">
+                  <Formik
+                      initialValues={{
+                        study_id: this.state.campaignIdNewSession,
+                        availability_start: "",
+                        availability_end: "",
+                        description: "",
+
+                      }}
+                      onSubmit={async (values) => {
+                        console.log(values);
+                        const token = JSON.parse(
+                            sessionStorage.getItem("user")
+                        ).access_token;
+                        fetch(process.env.REACT_APP_API + "/api/studies", {
+                          method: "post",
+                          body: JSON.stringify(values),
+                          headers: {
+                            Accept: "application/json",
+                            Authorization: `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                          },
+                        })
+                            .then((res) => res.json())
+                            .then(
+                                (result) => {
+                                  console.log("result", result);
+                                },
+                                (error) => {
+                                  console.log(error);
+                                }
+                            ).then(() => window.location.reload(false))
+                      }}
+                      render={({ values, handleSubmit, setFieldValue }) => {
+                        return (
+                            <form onSubmit={handleSubmit}>
+                              <Button onClick={() => {this.setState({createNewCampaign:false})}}>
+                                Annuler
+                              </Button>
+                              <h2>Add session</h2>
+                              <div className="form-group">
+                                <label>Campaign Name</label>
+                                <Field
+                                    type="text"
+                                    className="input"
+                                    name="product"
+                                    required
+                                />
+                              </div>
+                              <button type="submit" className="btn btn-primary">
+                                Submit</button>
+                            </form>
+                        );
+                      }}
+                  />
+                </div>
+              </div>
+          ) : (
+              ""
           )}
         </div>
       );

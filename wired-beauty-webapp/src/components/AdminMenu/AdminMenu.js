@@ -58,7 +58,7 @@ function AdminMenu() {
                             <Link to="/admin/verify-users">users</Link>
                         </li>
                         <li>
-                            <button onClick={downloadPDF}>export PDF</button>
+                            <a onClick={downloadPDF}>export PDF</a>
                         </li>
                     </ul>
                 </div>

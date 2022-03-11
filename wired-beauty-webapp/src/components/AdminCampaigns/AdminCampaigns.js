@@ -144,8 +144,11 @@ class AdminCampaigns extends React.Component {
                       > */}
                         <div className="sessionActionContainer">
                           <Link
-                            to={"/study/" + session.study_id}
-                            state={session.study_id}
+                            to={"/admin/study/" + session.study_id}
+                            state={{
+                              study_id: session.study_id,
+                              product_id: 1,
+                            }}
                           >
                             Modify
                           </Link>

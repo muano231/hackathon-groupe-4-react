@@ -178,22 +178,7 @@ class AdminCampaigns extends React.Component {
                         state={session.study_id}
                       > */}
                         <div className="sessionActionContainer">
-<<<<<<< HEAD
-                          <Link
-                            to={"/admin/study/" + session.study_id}
-                            state={{
-                              study_id: session.study_id,
-                              product_id: 1,
-                            }}
-                          >
-                            Modify
-                          </Link>
-                          <Link
-                            to={"/study/" + session.study_id}
-                            state={session.study_id}
-=======
                           <Button className="deleteButton" onClick={() => deleteSession(session.id)}
->>>>>>> de34aa11c32570b20b1d6911e61a410c5f129a29
                           >
                             Delete
                           </Button>

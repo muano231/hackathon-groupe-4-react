@@ -22,13 +22,23 @@ function AdminMenu() {
                 }
             }
         )
-        .then((res) => res.text())
+        .then((res) => res.arrayBuffer())
         .then(
             (result) => {
-                var parser = new DOMParser();
-                var doc = parser.parseFromString(result, "text/html");
-                setPDF(doc)
-                console.log(doc);
+                const link = document.createElement('a');
+                // create a blobURI pointing to our Blob
+                link.href = URL.createObjectURL(new Blob([result]));
+                link.download = "report.pdf";
+                // some browser needs the anchor to be in the doc
+                document.body.append(link);
+                link.click();
+                link.remove();
+                // in case the Blob uses a lot of memory
+                setTimeout(() => URL.revokeObjectURL(link.href), 7000);
+                // var parser = new DOMParser();
+                // var doc = parser.parseFromString(result, "text/html");
+                // setPDF(doc)
+                // console.log(doc);
             },
             (error) => {
                 setPDF({
@@ -58,7 +68,7 @@ function AdminMenu() {
                             <Link to="/admin/verify-users">users</Link>
                         </li>
                         <li>
-                            <button onClick={downloadPDF}>export PDF</button>
+                            <Link to="#" onClick={downloadPDF}>export PDF</Link>
                         </li>
                     </ul>
                 </div>

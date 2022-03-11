@@ -15,6 +15,15 @@
 
 .campaigns-list {
   width: 100%;
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+
+    &:not(:first-of-type) {
+      margin-top: 5rem;
+    }
+  }
 }
 
 .product-name {
@@ -38,6 +47,64 @@
           0px 62px 80px rgba(0, 0, 0, 0.02)
 ;
 
+  &.locked {
+    display: flex;
+    justify-content: space-between;
+  .product-name {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+    button {
+      padding: 1.2rem 2.4rem;
+      background-color: $secondary;
+      border-radius: var(--border-radius-default);
+      font-size: 16px;
+      transition: all .25s ease-in;
+      width: auto;
+      border: none;
+      color: black;
+      cursor: pointer;
+      display: inline-block;
+      font-style: normal;
+      gap: 15px;
+
+      &:hover {
+        background: $primary;
+        color: white;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.15);
+      }
+    }
+
+  }
+
+  &.waiting {
+    display: flex;
+    justify-content: space-between;
+    .product-name {
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    button {
+      padding: 1.2rem 2.4rem;
+      background-color: #f39c12;
+      border-radius: var(--border-radius-default);
+      font-size: 16px;
+      transition: all .25s ease-in;
+      width: auto;
+      border: none;
+      color: white;
+      display: inline-block;
+      font-style: normal;
+      gap: 15px;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+  }
 }
 
 .sessions-list {

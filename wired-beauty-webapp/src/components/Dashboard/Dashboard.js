@@ -16,12 +16,12 @@ function Dashboard() {
   if(isLoggedIn == "true" && role == "testeur") {
     return(
       <div>
-        <DashboardMenu name = {'Leo TERRAS'}></DashboardMenu>
+        <DashboardMenu/>
         <div className='content'>
           {params.page == "profile" ?
-            <DashboardProfile></DashboardProfile>
+            <DashboardProfile/>
             : params.page == "campaigns" &&
-            <DashboardCampaigns></DashboardCampaigns>
+            <DashboardCampaigns/>
           }
         </div>
       </div>

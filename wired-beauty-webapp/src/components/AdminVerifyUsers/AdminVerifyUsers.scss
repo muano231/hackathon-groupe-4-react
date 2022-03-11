@@ -70,11 +70,27 @@
             border-collapse: collapse;
             width: 100%;
             border-radius: var(--border-radius-default);
-            overflow: hidden;
+            max-width: 100%;
+            overflow: scroll;
 
             td, th {
                 border: 1px solid #ddd;
                 padding: 8px;
+
+                select {
+                    padding: 1.2rem 1rem;
+                    background-color: #f2f2f2;
+                    border-radius: var(--border-radius-default);
+                    transition: all 0.25s ease-in;
+                    font-size: 14px;
+                    width: 100%;
+                    border: none;
+                    color: black;
+                    line-height: 1;
+                    cursor: pointer;
+                    font-style: normal;
+                    margin: 0;
+                }
             }
 
             tr:nth-child(even){background-color: #f2f2f2;}

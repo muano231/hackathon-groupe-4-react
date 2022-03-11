@@ -6,7 +6,6 @@ import {Button} from "react-bootstrap";
 
 function askPermission(id) {
   const token = JSON.parse(sessionStorage.getItem("user")).access_token;
-  console.log('premisson askedS')
   fetch(
       process.env.REACT_APP_API + `/api/user/${id}/ask`,
       {
@@ -23,7 +22,6 @@ function askPermission(id) {
 
 
 class DashboardCampaigns extends React.Component {
-  currentDate = new Date();
 
   constructor(props) {
     super(props);
@@ -124,7 +122,7 @@ class DashboardCampaigns extends React.Component {
                                         to={`/study/${session.study_id}`}
                                         state={session.study_id}
                                     >
-                                      Participate <FaArrowRight />
+                                      Access <FaArrowRight />
                                     </Link>
                                 ) : (
                                     ""
